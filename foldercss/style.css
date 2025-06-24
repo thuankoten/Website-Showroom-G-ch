@@ -1,0 +1,87 @@
+header{
+    background-color: white;
+    width: 1200px;
+    height: 50px;
+    border:  rgb(15, 113, 231) 2px solid;
+    justify-content: center;  
+    align-items: center;
+    position: fixed;
+    top:0px;
+    z-index: 1000;
+}
+#container{
+    background-color: white;
+    width: 1200px;
+    min-height: 1000px;
+    justify-content: center;  
+    align-items: center;
+    margin: 0 auto;
+    overflow: hidden;
+}
+nav{
+    background: linear-gradient(to right, #052fba, rgb(43, 73, 226)) ;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    border: #052fba 2px solid;
+    border-radius: 0px 0px 10px 10px;
+    border-top: none;
+    width: 1200px;
+    height: 40px;
+    margin-top:45px;
+    margin-bottom: auto;
+    padding-top: 20px;
+    position: fixed;
+    top:0px;
+    z-index: 999;
+}
+nav a{
+    color: white; 
+    padding-top: auto; padding-bottom: auto; padding-right: 20px ;
+    text-decoration: none; text-align: right;
+}
+nav a:hover{color:#ff0000;}
+/* Khung nội dung */
+main{
+    background-color: white;
+    width: 100%px;
+    min-height: 500px;
+    justify-content: center;  
+    align-items: center;
+    margin-top: 100px;
+    overflow: hidden;
+}
+/* Thanh chuyển đổi các ảnh trang chủ */
+section{
+    background-color: rgba(255, 255, 255, 0.8);
+    border: solid 2px gray;
+    width: 90%;
+    max-width: 1200px;
+    min-height: 400px;
+    margin: 0 auto ;
+    text-align: center;
+    color:black;
+    
+}
+
+#thongtin {
+    background-color: rgb(255, 153, 0);
+    width: 600px; float: left;
+    min-height: 500px;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+#anh{
+    background-color: green;
+    width: 595px; float: left;
+    min-height: 500px;
+    margin-top: 5px;
+}
+
+footer{
+    text-align: center;
+    background-color: rgb(12, 8, 225);
+    width: 1200px;float: left;
+    min-height: 200px;
+    margin-top: 5px;
+    clear: both;
+}

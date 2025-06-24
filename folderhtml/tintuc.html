@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tin tức</title>
+    <style>
+    body { text-align:center}
+    </style>
+    <link href="../foldercss/style.css" rel="stylesheet" type="text/css"/>
+    <link href="../foldercss/tintuc.css" rel="stylesheet" type="text/css"/>
+    <script src="../jquery-3.7.1.js"></script>
+</head>
+<body>
+    <div id="container">
+    <!-- Hiển thị topbar và header  -->
+    <div id="include-header"></div>
+    <script>
+    $(function () {
+        $("#include-header").load("header.html");
+    });
+    </script>
+
+    <!-- Nội dung phần tin tức -->
+    <main>
+        <aside id="trangtt">
+        <h2>Trang tin tức</h2>
+        <a href="index.html">Xem tin tức</a>
+        <a href="gioithieu.html" >Giới thiệu</a>
+        <a href="sanpham.html" > Sản phẩm</a>
+        <a href="phoicanh.html" > Phối cảnh</a>
+        <a href="duan.html"> Dự án</a>
+        </aside>
+
+    <section id="hientt" style="display: none;">
+        <!-- Nội dung từ file sẽ hiển thị ở đây -->
+    </section\>
+
+    <script>
+    $("#trangtt a").click(function () {
+        const url = $(this).attr("href");
+        $("#trangtt").hide();             // Ẩn khung ban đầu
+        $("#hientt").show();              // Hiện khung mới
+        $("#hientt").load(url);           // Nạp nội dung vào khung mới
+        return false;                     // Không chuyển trang
+    });
+    </script>
+
+    <script>
+        $("#trangtt a").click(function () {
+    const url = $(this).attr("href");
+    $("#trangtt").hide();
+    $("#hientt").show().load(url, function () {
+        // Chèn nút "Quay lại" sau khi nội dung được load
+        $("#hientt").prepend('<button id="quaylai">Quay lại</button>');
+
+        // Gắn sự kiện cho nút
+        $("#quaylai").click(function () {
+            $("#hientt").hide();
+            $("#trangtt").show();
+        });
+    });
+    return false;
+});
+    </script>
+    
+
+    <!-- <section id="hientt">Hiện tin tức</section>
+    <aside id="trangtt">
+        <h1>Tin tức</h1>
+        <a href="sanpham.html">Trang giới thiệu</a><br>
+        <a href="index.html">Trang giới thiệu</a>
+    </aside>
+    <script>
+        $("#trangtt a").click(function(){
+            var url= $(this).attr("href");
+            $("#hientt").load(url);
+            return false;
+        });
+    </script> -->
+    </main>
+
+    <!-- Hiển thị footer -->
+    <div id="include-footer"></div>
+    <script>
+    $(function () {
+        $("#include-footer").load("footer.html");
+    });
+    </script>
+    </div>
+
+    
+</body>
+</html>

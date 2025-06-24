@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thư viện phối cảnh</title>
+    <style>
+    body { text-align:center}
+    </style>
+    <link href="../foldercss/style.css" rel="stylesheet"/>
+    <link href="../foldercss/phoicanh.css" rel="stylesheet"/>
+    <script src="../jquery-3.7.1.js"></script>
+</head>
+<body>
+    <div id="container">
+    <!-- Hiển thị topbar và header  -->
+    <div id="include-header"></div>
+    <script>
+    $(function () {
+        $("#include-header").load("header.html");
+    });
+    </script>
+
+    <!-- Nội dung phần phối cảnh -->
+    <main>
+    <h1>Hình ảnh phối cảnh</h1>
+    </main>
+
+    <!-- Hiển thị footer -->
+    <div id="include-footer"></div>
+    <script>
+    $(function () {
+        $("#include-footer").load("footer.html");
+    });
+    </script>
+    </div>
+</body>
+</html>

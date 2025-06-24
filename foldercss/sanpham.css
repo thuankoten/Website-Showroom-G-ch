@@ -1,0 +1,54 @@
+/* Phần sản phẩm */
+#sanpham{
+    background-color: #cf0;
+    width: 1200px;
+    min-height: 800px;
+    margin:auto;
+    text-align: center;
+    color:black;
+    margin-top: 0px;
+}
+ul {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+#sanpham a{
+    color: black;
+    padding-top: auto; padding-bottom: auto; padding-right: 20px ;
+    border-bottom: solid 1px #cf0; text-decoration: none; text-align: right;
+}
+#sanphamhot {
+    text-align: center;
+    background-color: darkcyan;
+    width: 1200px; float: left;
+    min-height: 400px;
+    margin-top: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;  /* canh giữa ngang */
+    align-items: center;      /* canh giữa các hàng */
+    gap: 20px;
+    padding: 20px;
+     
+}
+
+#sanphamhot h1 {
+    width: 100%; 
+    margin: 0 0 20px 0; 
+    text-align: center;
+}
+
+.anh1 {
+    border: 1px solid #ddd;
+    padding: 40px;
+    background-color: rgb(35, 0, 139);
+    width: 250px;
+    height: 250px;
+    margin-top: 20px;
+    text-align: center;
+    flex: 0 0 230px;; /* 50% chiều rộng trừ padding và gap */
+    box-sizing: border-box; /* đảm bảo kích thước tính cả padding */
+}

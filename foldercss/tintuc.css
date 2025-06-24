@@ -1,0 +1,44 @@
+/* Phần tin tức */
+/* #hientt{
+    background-color: green;
+    border: solid 1px red;
+    width: 895px; float: left;
+    min-height: 400px;
+    margin-top: 0px;
+    margin-right: 1px;
+}
+#hientt * {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    word-break: break-word;
+}
+#trangtt{
+    background-color: blueviolet;
+    width: 300px; float: left;
+    min-height: 400px;
+    margin-top: 0px;
+} */
+
+aside#trangtt {
+    border: 2px solid red;
+    width: 100%;
+    min-height: 400px;
+    background-color: yellow;
+    margin-top: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+section#hientt {
+    border: 2px solid red;
+    width: 100%;
+    min-height: 400px;
+    background-color: yellow;
+    padding: 0px;
+    box-sizing: border-box;
+}
+#quaylai{
+    background-color: white;
+    display: block;
+    margin-bottom: 10px;
+    text-align: left;
+}

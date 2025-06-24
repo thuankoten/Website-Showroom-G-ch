@@ -1,0 +1,52 @@
+<!DOCTYPE html >
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ</title>
+<style>
+body { text-align:center}
+</style>
+<link href="../foldercss/style.css" rel="stylesheet" />
+<script src="../jquery-3.7.1.js"></script>
+
+</head>
+
+<body>
+<div id="container">
+
+    <!-- Hiển thị topbar và header  -->
+    <div id="include-header"></div>
+    <script>
+    $(function () {
+        $("#include-header").load("header.html");
+    });
+    </script>
+
+    <!-- Chuyển nàu thanh nav nè -->
+    <script>
+        $(document).ready(function(){
+            $("nav").css({"color":"red","font-style":"italic"});
+        });
+    </script>
+
+    <!-- Nội dung trang chủ-->
+     <main>
+    <section>Các mẫu ảnh chuyển động
+        <div id="anhcd">
+
+        </div>
+    </section>
+    <div id="thongtin">Nội dung</div>
+    <div id="anh">Ảnh</div>
+    </main>
+    <!-- Hiển thị footer -->
+    <div id="include-footer"></div>
+    <script>
+    $(function () {
+        $("#include-footer").load("footer.html");
+    });
+    </script>
+</div>
+</body>
+<html>
