@@ -3,50 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang chủ</title>
-<style>
-body { text-align:center}
-</style>
+    <title>Trang chủ</title>    
 <link href="../foldercss/style.css" rel="stylesheet" />
 <script src="../jquery-3.7.1.js"></script>
+<script src="../javascript/index.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
 
 <body>
 <div id="container">
-
-    <!-- Hiển thị topbar và header  -->
-    <div id="include-header"></div>
-    <script>
-    $(function () {
-        $("#include-header").load("header.html");
-    });
-    </script>
-
-    <!-- Chuyển nàu thanh nav nè -->
-    <script>
-        $(document).ready(function(){
-            $("nav").css({"color":"red","font-style":"italic"});
-        });
-    </script>
-
-    <!-- Nội dung trang chủ-->
-     <main>
-    <section>Các mẫu ảnh chuyển động
-        <div id="anhcd">
-
+    <!-- Top Bar -->
+    <div id="topbar">
+        <div class="topbar-left">
+            <a href="index.html">
+                <img src="../hinh/background.jpg" alt="Logo" id="logo">
+            </a>
+            <span class="brand">
+                <span class="brand-main">BLife</span>
+                <span class="brand-sub">.com</span>
+                <div class="brand-slogan">Nâng tầm phong cách sống</div>
+            </span>
+            <span class="hours">
+                <i class="fa-solid fa-clock"></i>
+                <b>08:00 - 18:00</b>
+            </span>
         </div>
+        <div class="topbar-right">
+            <a href="#">Liên Hệ</a>
+            <span class="divider">|</span>
+            <a href="#">Giới Thiệu</a>
+            <span class="divider">|</span>
+            <a href="#">Chính Sách Bán Hàng</a>
+            <span class="divider">|</span>
+            <span class="icon user-icon">👤</span>
+        </div>
+    </div>
+
+    <!-- Main bar -->
+    <nav id="main-nav">
+        <a href="index.html">TRANG CHỦ</a>
+        <a href="gioithieu.html">GIỚI THIỆU</a>
+        <a href="sanpham.html">SẢN PHẨM</a>
+        <a href="phoicanh.html">THƯ VIỆN PHỐI CẢNH</a>
+        <a href="duan.html">DỰ ÁN</a>
+        <a href="tintuc.html">TIN TỨC</a>
+        <a href="khuyenmai.html">ƯU ĐÃI</a>
+    </nav>
+
+    <section id="slideshow-section">
+    <div id="slideshow-wrapper">
+        <button class="slide-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
+        <div id="slideshow">
+            <img src="../hinh/z6740255988747_ff8441d23da1eea0088424a5f90fc6e3.jpg" class="slide active" alt="Ảnh 1">
+            <img src="../hinh/z6740256033203_18c20ffc557758d625c785b059fc1fc6.jpg" class="slide" alt="Ảnh 2">
+            <img src="../hinh/z6740256814104_80d8afba8697acebcf91ab53456c2fb0.jpg" class="slide" alt="Ảnh 3">
+        </div>
+        <button class="slide-btn next"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
     </section>
-    <div id="thongtin">Nội dung</div>
-    <div id="anh">Ảnh</div>
-    </main>
-    <!-- Hiển thị footer -->
-    <div id="include-footer"></div>
-    <script>
-    $(function () {
-        $("#include-footer").load("footer.html");
-    });
-    </script>
 </div>
+    <div id="include-footer"></div>
 </body>
-<html>
+</html>
