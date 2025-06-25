@@ -85,3 +85,329 @@ footer{
     margin-top: 5px;
     clear: both;
 }
+/* Top Bar Styles */
+#topbar {
+    width: 1200px;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 40px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #eee;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    position: relative; /* Thêm dòng này */
+    z-index: 1001;      /* Đảm bảo topbar nổi trên nav */
+    margin: 0 auto;     /* Căn giữa nếu dùng width cố định */
+}
+#topbar .topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+#logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-right: 8px;
+}
+.brand {
+    display: flex;
+    flex-direction: column;
+    margin-right: 18px;
+}
+.brand-main {
+    color: #1877f2;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 1;
+}
+.brand-sub {
+    color: #ff0000;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 2px;
+}
+.brand-slogan {
+    font-size: 13px;
+    color: #555;
+    margin-top: -2px;
+}
+.location, .hours {
+    color: #888;
+    margin-left: 18px;
+    display: inline-flex;
+    align-items: center;
+    font-size: 16px;
+}
+.location .icon, .hours .icon {
+    margin-right: 4px;
+    font-size: 18px;
+}
+.dropdown {
+    font-size: 12px;
+    margin-left: 2px;
+}
+#topbar .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#topbar .topbar-right a {
+    color: #666;
+    text-decoration: none;
+    margin: 0 4px;
+    font-size: 16px;
+}
+#topbar .divider {
+    color: #ccc;
+    margin: 0 6px;
+}
+.user-icon {
+    font-size: 22px;
+    color: #888;
+    margin-left: 8px;
+}
+@media (max-width: 900px) {
+    #topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+    #logo {
+        width: 40px;
+        height: 40px;
+    }
+    .brand-main { font-size: 20px; }
+    .brand-sub { font-size: 13px; }
+}
+
+/* Main Navigation Styles */
+#main-nav {
+    width: 1200px;
+    background: #1741c2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0 auto 20px auto;
+    border-radius: 0 0 14px 14px;
+    box-shadow: 0 2px 6px rgba(23,65,194,0.08);
+    min-height: 56px;
+    z-index: 1000;
+    position: relative;
+    margin-top: 20px; /* Thêm dòng này, điều chỉnh giá trị nếu cần */
+}
+#main-nav a {
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 0 28px;
+    line-height: 56px;
+    transition: background 0.2s, color 0.2s;
+    letter-spacing: 1px;
+    display: inline-block;
+}
+#main-nav a:hover, #main-nav a:focus {
+    background: #fff;
+    color: #1741c2;
+    border-radius: 8px 8px 0 0;
+}
+@media (max-width: 900px) {
+    #main-nav {
+        flex-direction: column;
+        min-height: unset;
+        border-radius: 0 0 8px 8px;
+    }
+    #main-nav a {
+        padding: 10px 0;
+        font-size: 16px;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+#slideshow-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+#slideshow-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    padding: 10px 0;
+    /* Không có border ngoài */
+}
+
+#slideshow {
+    width: 900px;
+    height: 450px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    background: #f7f7f7;
+    margin: 0 16px;
+}
+
+#slideshow .slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.8s;
+    left: 0; top: 0;
+}
+#slideshow .slide.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+.slide-btn {
+    background: rgba(23,65,194,0.8);
+    border: none;
+    color: #fff;
+    font-size: 32px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+.slide-btn:hover {
+    background: #ff0000;
+}
+
+#main-footer {
+    width: 100%;
+    background: #fff;
+    padding: 24px 0 12px 0;
+    font-family: Arial, sans-serif;
+    color: #444;
+    border-top: 1px solid #eee;
+    box-sizing: border-box;
+    position: relative;
+    left: unset;
+    right: unset;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 32px;
+    box-sizing: border-box;
+}
+
+.footer-col {
+    flex: 1 1 200px;
+    min-width: 180px;
+    margin-bottom: 0;
+}
+
+.company-info {
+    flex: 2 1 320px;
+    min-width: 260px;
+}
+
+.footer-logo {
+    width: 140px;
+    margin-bottom: 10px;
+}
+
+.footer-contact {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+    font-size: 15px;
+}
+.footer-contact li {
+    margin-bottom: 6px;
+}
+.footer-contact i {
+    margin-right: 7px;
+    color: #1877f2;
+    width: 18px;
+    text-align: center;
+}
+.footer-col h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #222;
+}
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.footer-col ul li {
+    margin-bottom: 7px;
+}
+.footer-col ul li a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.2s;
+    font-size: 15px;
+}
+.footer-col ul li a:hover {
+    color: #1741c2;
+    text-decoration: underline;
+}
+.footer-apps {
+    display: flex;
+    gap: 8px;
+    margin: 8px 0 12px 0;
+}
+.footer-app-badge {
+    height: 32px;
+}
+.footer-social {
+    margin-top: 8px;
+}
+.footer-icons {
+    display: flex;
+    gap: 8px;
+    margin-top: 6px;
+}
+.footer-icons a {
+    font-size: 24px;
+    display: inline-block;
+    transition: transform 0.2s;
+}
+.footer-icons a:hover {
+    transform: scale(1.15);
+}
+@media (max-width: 1000px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 0 10px;
+    }
+    .company-info {
+        min-width: 160px;
+    }
+}
