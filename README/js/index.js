@@ -1,3 +1,7 @@
+$(function () {
+    $("#include-footer").load("footer.html");
+});
+
 $(document).ready(function(){
     let current = 0;
     const slides = $('#slideshow .slide');
