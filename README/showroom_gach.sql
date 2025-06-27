@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1:3307
--- Thời gian đã tạo: Th6 26, 2025 lúc 08:41 AM
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th6 27, 2025 lúc 06:57 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
--- Phiên bản PHP: 8.2.12
+-- Phiên bản PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `showroom_gach`
 --
-CREATE DATABASE IF NOT EXISTS `showroom_gach` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `showroom_gach`;
 
 -- --------------------------------------------------------
 
@@ -60,6 +58,18 @@ CREATE TABLE `loai_sanpham` (
 INSERT INTO `loai_sanpham` (`loai_id`, `loai_name`) VALUES
 (1, 'GẠCH LÁT NỀN'),
 (2, 'GẠCH ỐP TƯỜNG');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `phoicanh`
+--
+
+CREATE TABLE `phoicanh` (
+  `id` int(11) NOT NULL,
+  `hinhanh` varchar(255) DEFAULT NULL,
+  `mota` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -121,6 +131,12 @@ ALTER TABLE `loai_sanpham`
   ADD PRIMARY KEY (`loai_id`);
 
 --
+-- Chỉ mục cho bảng `phoicanh`
+--
+ALTER TABLE `phoicanh`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Chỉ mục cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
@@ -143,6 +159,12 @@ ALTER TABLE `chungloai_sanpham`
 --
 ALTER TABLE `loai_sanpham`
   MODIFY `loai_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT cho bảng `phoicanh`
+--
+ALTER TABLE `phoicanh`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `sanpham`
