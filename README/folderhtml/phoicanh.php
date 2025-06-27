@@ -1,23 +1,28 @@
-<?php include("../connect.php"); ?> 
+<?php include("../connect.php"); ?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Phối Cảnh Gạch</title>
-    <link rel="stylesheet" href="../foldercss/phoicanh.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang phối cảnh</title>
+    <style>
+    body { text-align:center}
+    </style>
+    <link href="../foldercss/style.css" rel="stylesheet"/>
+    <script src="../jquery-3.7.1.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Showroom Gạch - Phối Cảnh</h1>
-        <nav>
-            <a href="index.php">Trang chủ</a>
-            <a href="gioithieu.html">Giới thiệu</a>
-            <a href="sanpham.html">Sản phẩm</a>
-            <a href="phoicanh.php" class="active">Phối cảnh</a>
-            <a href="duan.html">Dự án & Ưu đãi</a>
-        </nav>
-    </header>
-    <!-- Thêm hình ngay dưới header -->
+<div id="container">
+
+    <!-- Gọi header đúng chuẩn -->
+    <div id="include-header"></div>
+    <script>
+    $(function () {
+        $("#include-header").load("header.html");
+    });
+    </script>
+
+    <!-- Banner dưới header -->
     <section class="banner">
         <img src="../img/thietke_thamkhao.png" alt="Thiết kế tham khảo">
     </section>
@@ -39,9 +44,15 @@
         }
         ?>
     </section>
+    </div>
 
-    <footer>
-        <p>© 2025 Showroom Gạch</p>
-    </footer>
+    <!-- Gọi footer chuẩn -->
+    <div id="include-footer"></div>
+    <script>
+    $(function () {
+        $("#include-footer").load("footer.html");
+    });
+    </script>
+
 </body>
 </html>
