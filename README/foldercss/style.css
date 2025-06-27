@@ -2,7 +2,7 @@ header{
     background-color: white;
     width: 1200px;
     height: 50px;
-    border:  rgb(15, 113, 231) 2px solid;
+    border:  rgb(54, 135, 234) 2px solid;
     justify-content: center;  
     align-items: center;
     position: fixed;
@@ -17,12 +17,13 @@ header{
     align-items: center;
     margin: 0 auto;
     overflow: hidden;
+    border: none !important;
 }
 nav{
-    background: linear-gradient(to right, #052fba, rgb(43, 73, 226)) ;
+    background: linear-gradient(to right, #4b6cdb, rgb(43, 73, 226)) ;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    border: #052fba 2px solid;
+    border: #5273e0 2px solid;
     border-radius: 0px 0px 10px 10px;
     border-top: none;
     width: 1200px;
@@ -53,7 +54,7 @@ main{
 /* Thanh chuyển đổi các ảnh trang chủ */
 section{
     background-color: rgba(255, 255, 255, 0.8);
-    border: solid 2px gray;
+    border: none; /* Xóa viền */
     width: 90%;
     max-width: 1200px;
     min-height: 400px;
@@ -97,9 +98,9 @@ footer{
     border-bottom: 1px solid #eee;
     font-family: Arial, sans-serif;
     font-size: 16px;
-    position: relative; /* Thêm dòng này */
-    z-index: 1001;      /* Đảm bảo topbar nổi trên nav */
-    margin: 0 auto;     /* Căn giữa nếu dùng width cố định */
+    position: relative;
+    z-index: 1001;    
+    margin: 0 auto;
 }
 #topbar .topbar-left {
     display: flex;
@@ -249,7 +250,7 @@ footer{
     border-radius: 20px;
     box-shadow: 0 4px 24px rgba(0,0,0,0.10);
     padding: 10px 0;
-    /* Không có border ngoài */
+    position: relative;
 }
 
 #slideshow {
@@ -295,8 +296,43 @@ footer{
     background: #ff0000;
 }
 
-#main-footer {
+.slide-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 20;
+}
+
+.slide-dots .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ccc;
+    display: inline-block;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.slide-dots .dot.active {
+    background: #1741c2;
+}
+
+#main-footer, #include-footer {
     width: 100%;
+    min-width: 100%;
+    margin: 0;
+    left: 0;
+    right: 0;
+    position: relative;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+#main-footer {
+    width: 100%; /* Đảm bảo full màn hình */
     background: #fff;
     padding: 24px 0 12px 0;
     font-family: Arial, sans-serif;
@@ -304,22 +340,25 @@ footer{
     border-top: 1px solid #eee;
     box-sizing: border-box;
     position: relative;
-    left: unset;
-    right: unset;
+    left: 0;
+    right: 0;
     margin-left: 0;
     margin-right: 0;
 }
 
 .footer-container {
-    max-width: 1400px;
-    margin: 0 auto;
+    width: 100%;  
+    max-width: 100vw;    
+    margin: 0;            
+    border-radius: 0;    
+    padding: 0 32px;
     display: flex;
     flex-wrap: wrap;
     gap: 24px;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 0 32px;
     box-sizing: border-box;
+    background: #f5f5f5;
 }
 
 .footer-col {
@@ -409,5 +448,152 @@ footer{
     }
     .company-info {
         min-width: 160px;
+    }
+}
+
+.product-categories {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin: 40px 0;
+}
+
+.category-item {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(149, 17, 17, 0.06);
+    padding: 24px 18px 18px 18px;
+    text-align: center; 
+    width: 340px;
+    transition: box-shadow 0.2s;
+}
+.category-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 18px;
+}
+    .img-hover-box {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+.img-hover-box img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: filter 0.3s;
+    display: block;
+}
+.choose-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #f26522;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 24px;
+    font-size: 13px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    cursor: pointer;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.img-hover-box:hover img {
+    filter: blur(3px) brightness(0.8);
+}
+.img-hover-box:hover .choose-btn {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.intro-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 40px 0 32px 0;
+}
+.intro-container {
+    display: flex;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    padding: 32px 40px;
+    max-width: 1200px;
+    width: 100%;
+    align-items: center;
+    gap: 40px;
+}
+.intro-text {
+    flex: 1.2;
+    text-align: left;
+}
+.intro-title {
+    font-size: 22px;
+    color: #888;
+    margin-bottom: 8px;
+    text-transform: lowercase;
+}
+.intro-text h1 {
+    font-size: 38px;
+    font-weight: 800;
+    margin: 0 0 18px 0;
+    color: #222;
+    letter-spacing: 1px;
+}
+.intro-text blockquote {
+    font-size: 18px;
+    color: #444;
+    border-left: 4px solid #eee;
+    padding-left: 18px;
+    margin: 0 0 28px 0;
+    background: #fafafa;
+}
+.intro-btn {
+    padding: 10px 28px;
+    border: 2px solid #222;
+    background: #fff;
+    color: #222;
+    border-radius: 24px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.intro-btn:hover {
+    background: #1741c2;
+    color: #fff;
+    border-color: #1741c2;
+}
+.intro-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.intro-image img {
+    max-width: 420px;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+}
+@media (max-width: 900px) {
+    .intro-container {
+        flex-direction: column;
+        padding: 18px 8px;
+        gap: 18px;
+    }
+    .intro-image img {
+        max-width: 100%;
     }
 }
