@@ -45,8 +45,8 @@
         <a href="index.php">TRANG CHỦ</a>
         <a href="gioithieu.html">GIỚI THIỆU</a>
         <a href="sanpham.html">SẢN PHẨM</a>
-        <a href="phoicanh.html">THƯ VIỆN PHỐI CẢNH</a>
-        <a href="duan.html">DỰ ÁN</a>
+        <a href="phoicanh.php">THƯ VIỆN PHỐI CẢNH</a>
+        <a href="duan.php">DỰ ÁN</a>
         <a href="tintuc.html">TIN TỨC</a>
         <a href="khuyenmai.html">ƯU ĐÃI</a>
     </nav>
