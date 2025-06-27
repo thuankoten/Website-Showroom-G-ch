@@ -9,10 +9,11 @@
     body { text-align:center}
     </style>
     <link href="../foldercss/style.css" rel="stylesheet"/>
+    <link href="../foldercss/phoicanh.css" rel="stylesheet"/>
     <script src="../jquery-3.7.1.js"></script>
 </head>
 <body>
-<div id="container">
+    <div id="container">
 
     <!-- Gọi header đúng chuẩn -->
     <div id="include-header"></div>
@@ -45,7 +46,7 @@
         ?>
     </section>
     </div>
-
+   
     <!-- Gọi footer chuẩn -->
     <div id="include-footer"></div>
     <script>
