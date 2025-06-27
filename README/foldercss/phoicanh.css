@@ -63,3 +63,10 @@ footer {
     padding: 15px;
     margin-top: 20px;
 }
+
+.banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
