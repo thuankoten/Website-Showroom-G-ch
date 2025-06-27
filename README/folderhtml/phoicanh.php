@@ -1,4 +1,4 @@
-<?php include("../connect.php"); ?>
+<?php include("../connect.php"); ?> 
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -17,6 +17,10 @@
             <a href="duan.html">Dự án & Ưu đãi</a>
         </nav>
     </header>
+    <!-- Thêm hình ngay dưới header -->
+    <section class="banner">
+        <img src="../img/thietke_thamkhao.png" alt="Thiết kế tham khảo">
+    </section>
 
     <section class="gallery">
         <?php
