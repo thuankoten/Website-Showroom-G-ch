@@ -27,24 +27,35 @@
     <section class="banner">
         <img src="../img/thietke_thamkhao.png" alt="Thiết kế tham khảo">
     </section>
-
-    <section class="gallery">
-        <?php
-        $sql = "SELECT * FROM phoicanh";
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<div class='gallery-item'>";
-                echo "<img src='../" . $row["hinhanh"] . "' alt='Phối cảnh'>";
-                echo "<p>" . $row["mota"] . "</p>";
-                echo "</div>";
-            }
-        } else {
-            echo "<p>Hiện chưa có dữ liệu phối cảnh.</p>";
-        }
-        ?>
+    
+    <!-- Nội dung 4 mục của trang phối cảnh -->
+    <section class="category-links">
+        <div class="category-item">
+            <a href="phongkhach_phongngu.php">
+                <img src="../img/placeholder1.jpg" alt="Phối cảnh phòng khách & phòng ngủ">
+                <h3>Phối cảnh phòng khách & phòng ngủ</h3>
+            </a>
+        </div>
+        <div class="category-item">
+            <a href="phongbep.php">
+                <img src="../img/placeholder2.jpg" alt="Phối cảnh phòng bếp">
+                <h3>Phối cảnh phòng bếp</h3>
+            </a>
+        </div>
+        <div class="category-item">
+            <a href="phongvesinh.php">
+                <img src="../img/placeholder3.jpg" alt="Phối cảnh phòng vệ sinh">
+                <h3>Phối cảnh phòng vệ sinh</h3>
+            </a>
+        </div>
+        <div class="category-item">
+            <a href="sanvuon.php">
+                <img src="../img/placeholder4.jpg" alt="Phối cảnh sân vườn">
+                <h3>Phối cảnh sân vườn</h3>
+            </a>
+        </div>
     </section>
+    <!-- Kết thúc nội dung 4 mục của trang phối cảnh -->
     </div>
    
     <!-- Gọi footer chuẩn -->

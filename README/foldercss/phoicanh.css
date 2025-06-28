@@ -56,3 +56,43 @@ body {
 .gallery-item p {
     padding: 10px;
 }
+/* Phần 4 khung mục lục*/
+
+.category-links {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin: 40px auto;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+.category-item {
+  width: 23%;
+  border: 1px solid #ddd;
+  text-align: center;
+  background: #f9f9f9;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+.category-item:hover {
+  transform: translateY(-5px);
+}
+
+.category-item img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.category-item h3 {
+  margin: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
