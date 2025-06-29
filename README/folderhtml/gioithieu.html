@@ -1,38 +1,302 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GIỚI THIỆU SẢN PHẨM</title>
-    <style>
-    body { text-align:center}
-    </style>
-    <link href="../foldercss/style.css" rel="stylesheet"/>
-    <link href="../foldercss/gioithieu.css" rel="stylesheet"/>
-    <script src="../jquery-3.7.1.js"></script>
+  <meta charset="UTF-8" />
+  <title>Giới thiệu - Gạch Việt Decor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    #container {
+      max-width: 1200px;
+      margin: auto;
+      background: #fff;
+    }
+
+    .header {
+      background-color: #007acc;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .header h2 {
+      margin: 0;
+    }
+
+    .nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .nav ul li a:hover,
+    .nav ul li a.active {
+      text-decoration: underline;
+    }
+
+    .banner {
+      background-color: #e0f3ff;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .banner h1 {
+      color: #007acc;
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .gioi-thieu-noi-dung {
+      padding: 30px;
+    }
+
+    .gioi-thieu-noi-dung h2 {
+      margin-top: 20px;
+      color: #007acc;
+    }
+
+    .gioi-thieu-noi-dung ul {
+      margin-left: 20px;
+      margin-top: 10px;
+    }
+
+    .product-section {
+      padding: 30px;
+    }
+
+    .product-section h2 {
+      color: #007acc;
+      margin-bottom: 20px;
+    }
+
+    .product-box {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .product {
+      flex: 1 1 30%;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .product img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .product p {
+      margin-top: 10px;
+    }
+
+    #main-footer {
+      background-color: #007acc;
+      color: white;
+      padding: 30px;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .footer-col {
+      flex: 1 1 45%;
+      margin-bottom: 20px;
+    }
+
+    .footer-logo {
+      width: 100px;
+      margin-bottom: 10px;
+    }
+
+    .footer-contact {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .footer-contact li {
+      margin-bottom: 5px;
+    }
+
+    .quick-links ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .quick-links ul li {
+      margin-bottom: 5px;
+    }
+
+    .quick-links ul li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .quick-links ul li a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.3);
+      padding-top: 10px;
+      font-size: 14px;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-    <div id="container">
-     <!-- Hiển thị topbar và header  -->
-    <div id="include-header"></div>
+  <div id="container">
+    
+    <!-- Header -->
+     <header class="header">
+      <div class="logo"><h2>Gạch Việt Decor</h2></div>
+      <nav class="nav">
+        <ul>
+          <li><a href="index.html">Trang chủ</a></li>
+          <li><a href="gioithieu.html" class="active">Giới thiệu</a></li>
+          <li><a href="sanpham.html">Sản phẩm</a></li>
+          <li><a href="tintuc.html">Tin tức</a></li>
+          <li><a href="footer.html">Liên hệ</a></li>
+           <li><a href="khuyenmai.html">Ưu đãi</a></li>
+            <li><a href="duan.html">Dự án</a></li>
+             <li><a href="phoicanh.php">Thư Viên Phối Cảnh</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Banner -->
+    <div class="banner">
+      <h1>GẠCH VIỆT DECOR</h1>
+      <p>Chuyên cung cấp gạch ốp lát chất lượng cao – sang trọng – hiện đại</p>
+    </div>
+
+    <!-- Nội dung giới thiệu -->
+    <main class="gioi-thieu-noi-dung">
+      <h2>Giới thiệu về Gạch Việt Decor</h2>
+      <p>
+        Gạch Việt Decor là đơn vị chuyên cung cấp các dòng gạch ốp lát chất lượng cao, đa dạng về mẫu mã, kiểu dáng và kích thước. Với định hướng hiện đại và sang trọng, chúng tôi luôn nỗ lực mang đến những sản phẩm tốt nhất, phù hợp với mọi không gian sống từ căn hộ, biệt thự đến công trình thương mại.
+      </p>
+
+      <h2>Sứ mệnh và giá trị</h2>
+      <ul>
+        <li><strong>Sứ mệnh:</strong> Là đối tác tin cậy trong lĩnh vực vật liệu xây dựng & trang trí nội thất.</li>
+        <li><strong>Giá trị:</strong> Uy tín – Chất lượng – Tận tâm – Đổi mới sáng tạo.</li>
+      </ul>
+
+      <h2>Thế mạnh của chúng tôi</h2>
+      <ul>
+        <li>Kho hàng lớn, luôn có sẵn nhiều mẫu gạch thịnh hành</li>
+        <li>Tư vấn miễn phí, hỗ trợ chọn mẫu theo thiết kế</li>
+        <li>Chính sách chiết khấu hấp dẫn cho nhà thầu và công trình lớn</li>
+        <li>Vận chuyển toàn quốc, hỗ trợ bốc xếp tận nơi</li>
+      </ul>
+
+      <h2>Cam kết dịch vụ</h2>
+      <ul>
+        <li>100% sản phẩm đúng chất lượng, rõ nguồn gốc</li>
+        <li>Đổi trả trong 3 ngày nếu lỗi do sản xuất</li>
+        <li>Miễn phí giao hàng nội thành với đơn từ 5 triệu VNĐ</li>
+      </ul>
+    </main>
+
+    <!-- Sản phẩm ngẫu nhiên -->
+    <section class="product-section">
+      <h2>Sản phẩm tiêu biểu</h2>
+      <div id="random-products" class="product-box"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="main-footer">
+      <div class="footer-container">
+        <div class="footer-col company-info">
+          <img src="hinh/background.jpg" alt="Logo" class="footer-logo">
+          <p>Hệ thống phân phối online với mức giá chiết khấu cao.</p>
+          <ul class="footer-contact">
+            <li>02 Võ Oanh, Phường 25, Bình Thạnh, Hồ Chí Minh</li>
+            <li>028 3899 2862</li>
+            <li>Email: thuantt1708@ut.edu.vn</li>
+          </ul>
+        </div>
+        <div class="footer-col quick-links">
+          <h3>Liên kết nhanh</h3>
+          <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="gioithieu.html">Giới thiệu</a></li>
+            <li><a href="sanpham.html">Sản phẩm</a></li>
+            <li><a href="tintuc.html">Tin tức</a></li>
+            <li><a href="footer.html">Liên hệ</a></li>
+            <li><a href="khuyenmai.html">Ưu đãi</a></li>
+            <li><a href="duan.html">Dự án</a></li>
+             <li><a href="phoicanh.php">Thư Viên Phối Cảnh</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Gạch Việt Decor. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Script random sản phẩm -->
     <script>
-    $(function () {
-        $("#include-header").load("header.html");
-    });
+      const sanPhamList = [
+        { img: "hinh/duan5.jpeg", ten: "Gạch men cao cấp"},
+        { img: "img/banner4.jpg", ten: "Gạch bông gió"},
+        { img: "img/banner2.jpg", ten: "Gạch ceramic "},
+        { img: "/img/imgduan/duan3.webp", ten: "Gạch vân đá"},
+        { img: "/img/gachlatsan.jpg", ten: "Gạch lát sàn"}
+      ];
+
+      function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+
+      const randoms = shuffleArray(sanPhamList).slice(0, 3);
+      const box = document.getElementById("random-products");
+
+      randoms.forEach(sp => {
+        box.innerHTML += `
+          <div class="product">
+            <a href="${sp.link}">
+              <img src="${sp.img}" alt="${sp.ten}">
+            </a>
+            <p>${sp.ten}</p>
+            <p>${sp.gia}</p>
+          </div>
+        `;
+      });
     </script>
 
-    <!-- Nội dung phần giới thiệu -->
-    <main>
-        <h1>Nội dung và ảnh</h1>
-    </main>
-    
-    <!-- Hiển thị footer -->
-    <div id="include-footer"></div>
-    <script>
-    $(function () {
-        $("#include-footer").load("footer.html");
-    });
-    </script>
-    </div>
+  </div>
 </body>
 </html>
