@@ -2,200 +2,64 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <title>Giới thiệu - Gạch Việt Decor</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    body {
-      background-color: #f4f4f4;
-      color: #333;
-    }
-
-    #container {
-      max-width: 1200px;
-      margin: auto;
-      background: #fff;
-    }
-
-    .header {
-      background-color: #007acc;
-      color: white;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .header h2 {
-      margin: 0;
-    }
-
-    .nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-
-    .nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .nav ul li a:hover,
-    .nav ul li a.active {
-      text-decoration: underline;
-    }
-
-    .banner {
-      background-color: #e0f3ff;
-      padding: 40px 20px;
-      text-align: center;
-    }
-
-    .banner h1 {
-      color: #007acc;
-      font-size: 36px;
-      margin-bottom: 10px;
-    }
-
-    .gioi-thieu-noi-dung {
-      padding: 30px;
-    }
-
-    .gioi-thieu-noi-dung h2 {
-      margin-top: 20px;
-      color: #007acc;
-    }
-
-    .gioi-thieu-noi-dung ul {
-      margin-left: 20px;
-      margin-top: 10px;
-    }
-
-    .product-section {
-      padding: 30px;
-    }
-
-    .product-section h2 {
-      color: #007acc;
-      margin-bottom: 20px;
-    }
-
-    .product-box {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .product {
-      flex: 1 1 30%;
-      background: #f9f9f9;
-      border: 1px solid #ddd;
-      padding: 15px;
-      text-align: center;
-    }
-
-    .product img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-
-    .product p {
-      margin-top: 10px;
-    }
-
-    #main-footer {
-      background-color: #007acc;
-      color: white;
-      padding: 30px;
-    }
-
-    .footer-container {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-
-    .footer-col {
-      flex: 1 1 45%;
-      margin-bottom: 20px;
-    }
-
-    .footer-logo {
-      width: 100px;
-      margin-bottom: 10px;
-    }
-
-    .footer-contact {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .footer-contact li {
-      margin-bottom: 5px;
-    }
-
-    .quick-links ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .quick-links ul li {
-      margin-bottom: 5px;
-    }
-
-    .quick-links ul li a {
-      color: white;
-      text-decoration: none;
-    }
-
-    .quick-links ul li a:hover {
-      text-decoration: underline;
-    }
-
-    .footer-bottom {
-      text-align: center;
-      border-top: 1px solid rgba(255,255,255,0.3);
-      padding-top: 10px;
-      font-size: 14px;
-      margin-top: 20px;
-    }
-  </style>
+  <title>Giới thiệu</title>
+  <link rel="stylesheet" href="../foldercss/style.css" type="text/css" />
+  <link rel="stylesheet" href="../foldercss/gioithieu.css" type="text/css" />
+  <script src="../jquery-3.7.1.js"></script>
 </head>
 <body>
   <div id="container">
     
     <!-- Header -->
-     <header class="header">
-      <div class="logo"><h2>Gạch Việt Decor</h2></div>
-      <nav class="nav">
-        <ul>
-          <li><a href="index.html">Trang chủ</a></li>
-          <li><a href="gioithieu.html" class="active">Giới thiệu</a></li>
-          <li><a href="sanpham.html">Sản phẩm</a></li>
-          <li><a href="tintuc.html">Tin tức</a></li>
-          <li><a href="footer.html">Liên hệ</a></li>
-           <li><a href="khuyenmai.html">Ưu đãi</a></li>
-            <li><a href="duan.html">Dự án</a></li>
-             <li><a href="phoicanh.php">Thư Viên Phối Cảnh</a></li>
-        </ul>
-      </nav>
-    </header>
-
-    <!-- Banner -->
-    <div class="banner">
-      <h1>GẠCH VIỆT DECOR</h1>
-      <p>Chuyên cung cấp gạch ốp lát chất lượng cao – sang trọng – hiện đại</p>
+     <!-- <header>Hiển thị thời gian mở cửa,...</header>
+     Thanh header 
+    <nav>
+    	<a href="index.html">TRANG CHỦ</a> 
+        <a href="gioithieu.html">GIỚI THIỆU</a>
+        <a href="sanpham.html">SẢN PHẨM</a>
+        <a href="phoicanh.html">THƯ VIỆN PHỐI CẢNH</a>
+        <a href="duan.html">DỰ ÁN</a>
+        <a href="tintuc.html">TIN TỨC</a> 
+        <a href="khuyenmai.html">ƯU ĐÃI</a>         
+    </nav> -->
+    <!-- Top Bar -->
+    <div id="topbar">
+        <div class="topbar-left">
+            <a href="index.html">
+                <img src="../hinh/background.jpg" alt="Logo" id="logo">
+            </a>
+            <span class="brand">
+                <span class="brand-main">BLife</span>
+                <span class="brand-sub">.com</span>
+                <div class="brand-slogan">Nâng tầm phong cách sống</div>
+            </span>
+            <span class="hours">
+                <i class="fa-solid fa-clock"></i>
+                <b>08:00 - 18:00</b>
+            </span>
+        </div>
+        <div class="topbar-right">
+            <a href="#">Liên Hệ</a>
+            <span class="divider">|</span>
+            <a href="#">Giới Thiệu</a>
+            <span class="divider">|</span>
+            <a href="#">Chính Sách Bán Hàng</a>
+            <span class="divider">|</span>
+            <span class="icon user-icon">👤</span>
+        </div>
     </div>
+
+    <!-- Main bar -->
+    <nav id="main-nav">
+        <a href="index.php">TRANG CHỦ</a>
+        <a href="gioithieu.html">GIỚI THIỆU</a>
+        <a href="sanpham.html">SẢN PHẨM</a>
+        <a href="phoicanh.php">THƯ VIỆN PHỐI CẢNH</a>
+        <a href="duan.php">DỰ ÁN</a>
+        <a href="tintuc.html">TIN TỨC</a>
+        <a href="khuyenmai.html">ƯU ĐÃI</a>
+    </nav>
 
     <!-- Nội dung giới thiệu -->
     <main class="gioi-thieu-noi-dung">
@@ -229,38 +93,61 @@
     <!-- Sản phẩm ngẫu nhiên -->
     <section class="product-section">
       <h2>Sản phẩm tiêu biểu</h2>
-      <div id="random-products" class="product-box"></div>
+      <div id="random-products" class="product-list"></div>
     </section>
 
     <!-- Footer -->
     <footer id="main-footer">
-      <div class="footer-container">
-        <div class="footer-col company-info">
-          <img src="hinh/background.jpg" alt="Logo" class="footer-logo">
-          <p>Hệ thống phân phối online với mức giá chiết khấu cao.</p>
-          <ul class="footer-contact">
-            <li>02 Võ Oanh, Phường 25, Bình Thạnh, Hồ Chí Minh</li>
-            <li>028 3899 2862</li>
-            <li>Email: thuantt1708@ut.edu.vn</li>
-          </ul>
+        <div class="footer-container">
+            <div class="footer-col company-info">
+                <img src="../hinh/background.jpg" alt="Logo" class="footer-logo">
+                <p>Hệ thống phân phối online với mức giá chiết khấu cao.<br></p>
+                <ul class="footer-contact">
+                    <li><i class="fa-solid fa-location-dot"></i>  02 Võ Oanh, Phường 25, Bình Thạnh, Hồ Chí Minh</li>
+                    <li><i class="fa-solid fa-phone"></i>  028 3899 2862</li>
+                    <li><i class="fa-solid fa-envelope"></i> Email: thuantt1708@ut.edu.vn</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Chính sách bán hàng</h3>
+                <ul>
+                    <li><a href="#">Giới thiệu</a></li>
+                    <li><a href="#">Quy định đổi trả</a></li>
+                    <li><a href="#">Chính sách bảo hành</a></li>
+                    <li><a href="#">Hướng dẫn thanh toán</a></li>
+                    <li><a href="#">Phương thức giao hàng</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Hỗ trợ dịch vụ</h3>
+                <ul>
+                    <li><a href="#">Liên hệ hỗ trợ</a></li>
+                    <li><a href="#">Thông tin tư vấn</a></li>
+                    <li><a href="#">Tra cứu đơn hàng</a></li>
+                    <li><a href="#">Tài khoản khách hàng</a></li>
+                </ul>
+            </div>
+            <div class="footer-col app-social">
+                <div>
+                    <b>Ứng dụng trên:</b>
+                    <div class="footer-apps">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" class="footer-app-badge">
+                        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store" class="footer-app-badge">
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <b>Kết nối với chúng tôi:</b>
+                    <div class="footer-icons">
+                        <a href="#"><i class="fa-brands fa-facebook-square" style="color:#4267B2"></i></a>
+                        <a href="#"><i class="fa-brands fa-x-twitter" style="color:#222"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram" style="color:#C13584"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube" style="color:#FF0000"></i></a>
+                        <a href="#"><i class="fa-brands fa-pinterest" style="color:#E60023"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin" style="color:#0077B5"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="footer-col quick-links">
-          <h3>Liên kết nhanh</h3>
-          <ul>
-            <li><a href="index.html">Trang chủ</a></li>
-            <li><a href="gioithieu.html">Giới thiệu</a></li>
-            <li><a href="sanpham.html">Sản phẩm</a></li>
-            <li><a href="tintuc.html">Tin tức</a></li>
-            <li><a href="footer.html">Liên hệ</a></li>
-            <li><a href="khuyenmai.html">Ưu đãi</a></li>
-            <li><a href="duan.html">Dự án</a></li>
-             <li><a href="phoicanh.php">Thư Viên Phối Cảnh</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2025 Gạch Việt Decor. All rights reserved.</p>
-      </div>
     </footer>
 
     <!-- Script random sản phẩm -->
@@ -286,7 +173,7 @@
 
       randoms.forEach(sp => {
         box.innerHTML += `
-          <div class="product">
+          <div class="product-item">
             <a href="${sp.link}">
               <img src="${sp.img}" alt="${sp.ten}">
             </a>
