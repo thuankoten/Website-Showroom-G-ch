@@ -1,26 +1,51 @@
-header{
+/* =========================
+   Layout & Container
+   ========================= */
+header {
     background-color: white;
     width: 1200px;
     height: 50px;
-    border:  rgb(54, 135, 234) 2px solid;
-    justify-content: center;  
+    border: rgb(54, 135, 234) 2px solid;
+    justify-content: center;
     align-items: center;
     position: fixed;
-    top:0px;
+    top: 0px;
     z-index: 1000;
 }
-#container{
+#container {
     background-color: white;
     width: 1200px;
     min-height: 1000px;
-    justify-content: center;  
+    justify-content: center;
     align-items: center;
     margin: 0 auto;
     overflow: hidden;
     border: none !important;
 }
-nav{
-    background: linear-gradient(to right, #4b6cdb, rgb(43, 73, 226)) ;
+main {
+    background-color: white;
+    width: 100%;
+    min-height: 500px;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+section {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    width: 90%;
+    max-width: 1200px;
+    min-height: 400px;
+    margin: 0 auto;
+    text-align: center;
+    color: black;
+}
+
+/* =========================
+   Navigation (Main Bar)
+   ========================= */
+nav {
+    background: linear-gradient(to right, #4b6cdb, rgb(43, 73, 226));
     background-repeat: no-repeat;
     background-attachment: fixed;
     border: #5273e0 2px solid;
@@ -28,208 +53,26 @@ nav{
     border-top: none;
     width: 1200px;
     height: 40px;
-    margin-top:45px;
+    margin-top: 45px;
     margin-bottom: auto;
     padding-top: 20px;
     position: fixed;
-    top:0px;
+    top: 0px;
     z-index: 999;
 }
-nav a{
-    color: white; 
-    padding-top: auto; padding-bottom: auto; padding-right: 20px ;
-    text-decoration: none; text-align: right;
+nav a {
+    color: white;
+    padding-right: 20px;
+    text-decoration: none;
+    text-align: right;
 }
-nav a:hover{color:#ff0000;}
-/* Khung nội dung */
-main{
-    background-color: white;
-    width: 100%px;
-    min-height: 500px;
-    justify-content: center;  
-    align-items: center;
-    overflow: hidden;
-}
-/* Thanh chuyển đổi các ảnh trang chủ */
-section{
-    background-color: rgba(255, 255, 255, 0.8);
-    border: none; /* Xóa viền */
-    width: 90%;
-    max-width: 1200px;
-    min-height: 400px;
-    margin: 0 auto ;
-    text-align: center;
-    color:black;
-    
-}
-
-#thongtin {
-    background-color: rgb(255, 153, 0);
-    width: 600px; float: left;
-    min-height: 500px;
-    margin-top: 5px;
-    margin-right: 5px;
-}
-#anh{
-    background-color: green;
-    width: 595px; float: left;
-    min-height: 500px;
-    margin-top: 5px;
-}
-
-footer{
-    text-align: center;
-    background-color: rgb(12, 8, 225);
-    width: 1200px;float: left;
-    min-height: 200px;
-    margin-top: 5px;
-    clear: both;
-}
-/* Top Bar Styles */
-#topbar {
-    width: 1200px;
-    background: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 40px;
-    box-sizing: border-box;
-    border-bottom: 1px solid #eee;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    position: relative;
-    z-index: 1001;    
-    margin: 0 auto;
-}
-#topbar .topbar-left {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-}
-#logo {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-    margin-right: 8px;
-}
-.brand {
-    display: flex;
-    flex-direction: column;
-    margin-right: 18px;
-}
-.brand-main {
-    color: #1877f2;
-    font-weight: bold;
-    font-size: 28px;
-    line-height: 1;
-}
-.brand-sub {
+nav a:hover {
     color: #ff0000;
-    font-size: 18px;
-    font-weight: bold;
-    margin-left: 2px;
-}
-.brand-slogan {
-    font-size: 13px;
-    color: #555;
-    margin-top: -2px;
-}
-.location, .hours {
-    color: #888;
-    margin-left: 18px;
-    display: inline-flex;
-    align-items: center;
-    font-size: 16px;
-}
-.location .icon, .hours .icon {
-    margin-right: 4px;
-    font-size: 18px;
-}
-.dropdown {
-    font-size: 12px;
-    margin-left: 2px;
-}
-#topbar .topbar-right {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-#topbar .topbar-right a {
-    color: #666;
-    text-decoration: none;
-    margin: 0 4px;
-    font-size: 16px;
-}
-#topbar .divider {
-    color: #ccc;
-    margin: 0 6px;
-}
-.user-icon {
-    font-size: 22px;
-    color: #888;
-    margin-left: 8px;
-}
-@media (max-width: 900px) {
-    #topbar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 8px 10px;
-        font-size: 14px;
-    }
-    #logo {
-        width: 40px;
-        height: 40px;
-    }
-    .brand-main { font-size: 20px; }
-    .brand-sub { font-size: 13px; }
 }
 
-/* Main Navigation Styles */
-#main-nav {
-    width: 1200px;
-    background: #1741c2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    margin: 0 auto 20px auto;
-    border-radius: 0 0 14px 14px;
-    box-shadow: 0 2px 6px rgba(23,65,194,0.08);
-    min-height: 56px;
-    z-index: 1000;
-    position: relative;
-    margin-top: 20px; /* Thêm dòng này, điều chỉnh giá trị nếu cần */
-}
-#main-nav a {
-    color: #fff;
-    font-weight: bold;
-    font-size: 18px;
-    text-decoration: none;
-    padding: 0 28px;
-    line-height: 56px;
-    transition: background 0.2s, color 0.2s;
-    letter-spacing: 1px;
-    display: inline-block;
-}
-#main-nav a:hover, #main-nav a:focus {
-    background: #fff;
-    color: #1741c2;
-    border-radius: 8px 8px 0 0;
-}
-@media (max-width: 900px) {
-    #main-nav {
-        flex-direction: column;
-        min-height: unset;
-        border-radius: 0 0 8px 8px;
-    }
-    #main-nav a {
-        padding: 10px 0;
-        font-size: 16px;
-        width: 100%;
-        text-align: center;
-    }
-}
-
+/* =========================
+   Slideshow
+   ========================= */
 #slideshow-section {
     width: 100%;
     display: flex;
@@ -240,7 +83,6 @@ footer{
     border: none;
     box-shadow: none;
 }
-
 #slideshow-wrapper {
     display: flex;
     align-items: center;
@@ -251,7 +93,6 @@ footer{
     padding: 10px 0;
     position: relative;
 }
-
 #slideshow {
     width: 900px;
     height: 450px;
@@ -261,7 +102,6 @@ footer{
     background: #f7f7f7;
     margin: 0 16px;
 }
-
 #slideshow .slide {
     position: absolute;
     width: 100%;
@@ -275,7 +115,6 @@ footer{
     opacity: 1;
     z-index: 2;
 }
-
 .slide-btn {
     background: rgba(23,65,194,0.8);
     border: none;
@@ -294,7 +133,6 @@ footer{
 .slide-btn:hover {
     background: #ff0000;
 }
-
 .slide-dots {
     position: absolute;
     left: 50%;
@@ -304,7 +142,6 @@ footer{
     gap: 10px;
     z-index: 20;
 }
-
 .slide-dots .dot {
     width: 12px;
     height: 12px;
@@ -314,155 +151,25 @@ footer{
     cursor: pointer;
     transition: background 0.3s;
 }
-
 .slide-dots .dot.active {
     background: #1741c2;
 }
 
-#main-footer, #include-footer {
-    width: 100%;
-    min-width: 100%;
-    margin: 0;
-    left: 0;
-    right: 0;
-    position: relative;
-    box-sizing: border-box;
-    padding: 0;
-}
-
-#main-footer {
-    width: 100%; /* Đảm bảo full màn hình */
-    background: #fff;
-    padding: 24px 0 12px 0;
-    font-family: Arial, sans-serif;
-    color: #444;
-    border-top: 1px solid #eee;
-    box-sizing: border-box;
-    position: relative;
-    left: 0;
-    right: 0;
-    margin-left: 0;
-    margin-right: 0;
-}
-
-.footer-container {
-    width: 100%;  
-    max-width: 100vw;    
-    margin: 0;            
-    border-radius: 0;    
-    padding: 0 32px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
-    justify-content: space-between;
-    align-items: flex-start;
-    box-sizing: border-box;
-    background: #f5f5f5;
-}
-
-.footer-col {
-    flex: 1 1 200px;
-    min-width: 180px;
-    margin-bottom: 0;
-}
-
-.company-info {
-    flex: 2 1 320px;
-    min-width: 260px;
-}
-
-.footer-logo {
-    width: 140px;
-    margin-bottom: 10px;
-}
-
-.footer-contact {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0 0 0;
-    font-size: 15px;
-}
-.footer-contact li {
-    margin-bottom: 6px;
-}
-.footer-contact i {
-    margin-right: 7px;
-    color: #1877f2;
-    width: 18px;
-    text-align: center;
-}
-.footer-col h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: #222;
-}
-.footer-col ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-.footer-col ul li {
-    margin-bottom: 7px;
-}
-.footer-col ul li a {
-    color: #666;
-    text-decoration: none;
-    transition: color 0.2s;
-    font-size: 15px;
-}
-.footer-col ul li a:hover {
-    color: #1741c2;
-    text-decoration: underline;
-}
-.footer-apps {
-    display: flex;
-    gap: 8px;
-    margin: 8px 0 12px 0;
-}
-.footer-app-badge {
-    height: 32px;
-}
-.footer-social {
-    margin-top: 8px;
-}
-.footer-icons {
-    display: flex;
-    gap: 8px;
-    margin-top: 6px;
-}
-.footer-icons a {
-    font-size: 24px;
-    display: inline-block;
-    transition: transform 0.2s;
-}
-.footer-icons a:hover {
-    transform: scale(1.15);
-}
-@media (max-width: 1000px) {
-    .footer-container {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-        padding: 0 10px;
-    }
-    .company-info {
-        min-width: 160px;
-    }
-}
-
+/* =========================
+   Product Categories
+   ========================= */
 .product-categories {
     display: flex;
     justify-content: center;
     gap: 48px;
     margin: 40px 0;
 }
-
 .category-item {
     background: #ffffff;
     border-radius: 8px;
     box-shadow: 0 2px 12px rgba(149, 17, 17, 0.06);
     padding: 24px 18px 18px 18px;
-    text-align: center; 
+    text-align: center;
     width: 340px;
     transition: box-shadow 0.2s;
 }
@@ -473,7 +180,7 @@ footer{
     border-radius: 6px;
     margin-bottom: 18px;
 }
-    .img-hover-box {
+.img-hover-box {
     position: relative;
     width: 100%;
     height: 220px;
@@ -516,6 +223,9 @@ footer{
     pointer-events: auto;
 }
 
+/* =========================
+   Intro Section
+   ========================= */
 .intro-section {
     width: 100%;
     display: flex;
@@ -568,6 +278,8 @@ footer{
     font-weight: 500;
     cursor: pointer;
     transition: background 0.2s, color 0.2s;
+    text-decoration: none;
+    display: inline-block;
 }
 .intro-btn:hover {
     background: #1741c2;
@@ -586,6 +298,10 @@ footer{
     border-radius: 12px;
     box-shadow: 0 2px 16px rgba(0,0,0,0.10);
 }
+
+/* =========================
+   Responsive
+   ========================= */
 @media (max-width: 900px) {
     .intro-container {
         flex-direction: column;
@@ -595,4 +311,17 @@ footer{
     .intro-image img {
         max-width: 100%;
     }
+}
+
+/* =========================
+   Custom Footer
+   ========================= */
+footer {
+    text-align: center;
+    background-color: rgb(12, 8, 225);
+    width: 1200px;
+    float: left;
+    min-height: 200px;
+    margin-top: 5px;
+    clear: both;
 }
