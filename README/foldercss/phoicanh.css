@@ -17,6 +17,8 @@ body {
     width: 100%;
     height: auto;
     display: block;
+    margin-bottom: 0;
+
 }
 .banner {
     margin: 0 auto;
@@ -63,9 +65,9 @@ body {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
-  margin: 40px auto;
+  margin: 0 auto;
   max-width: 1200px;
-  padding: 20px;
+  padding: 0;
 }
 
 .category-item {
