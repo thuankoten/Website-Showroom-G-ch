@@ -1,44 +1,66 @@
-/* Phần tin tức */
-/* #hientt{
-    background-color: green;
-    border: solid 1px red;
-    width: 895px; float: left;
-    min-height: 400px;
-    margin-top: 0px;
-    margin-right: 1px;
+/* Định dạng danh sách tin tức */
+.news-list {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    padding: 32px 24px;
+    margin: 32px auto;
+    max-width: 900px;
 }
-#hientt * {
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-    word-break: break-word;
-}
-#trangtt{
-    background-color: blueviolet;
-    width: 300px; float: left;
-    min-height: 400px;
-    margin-top: 0px;
-} */
 
-aside#trangtt {
-    border: 2px solid red;
-    width: 100%;
-    min-height: 400px;
-    background-color: yellow;
-    margin-top: 0px;
-    padding: 0px;
-    box-sizing: border-box;
+.news-list h2 {
+    text-align: center;
+    color: #1a237e;
+    margin-bottom: 32px;
+    font-size: 2rem;
+    letter-spacing: 1px;
 }
-section#hientt {
-    border: 2px solid red;
-    width: 100%;
-    min-height: 400px;
-    background-color: yellow;
-    padding: 0px;
-    box-sizing: border-box;
+
+.news-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
-#quaylai{
-    background-color: white;
-    display: block;
-    margin-bottom: 10px;
-    text-align: left;
+
+.news-list li {
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e0e0e0;
+    transition: background 0.2s;
+}
+
+.news-list li:last-child {
+    border-bottom: none;
+}
+
+.news-list a {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #1976d2;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.news-list a:hover {
+    color: #0d47a1;
+    text-decoration: underline;
+}
+
+.news-list p {
+    margin: 12px 0 0 0;
+    color: #444;
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+@media (max-width: 600px) {
+    .news-list {
+        padding: 16px 4px;
+    }
+    .news-list h2 {
+        font-size: 1.3rem;
+    }
+    .news-list a {
+        font-size: 1rem;
+    }
 }
