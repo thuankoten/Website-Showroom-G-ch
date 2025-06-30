@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang chủ</title>    
 <link href="../foldercss/style.css" rel="stylesheet" />
+<link href="../foldercss/index.css" rel="stylesheet" />
 <script src="../jquery-3.7.1.js"></script>
 <script src="../js/index.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -13,43 +14,13 @@
 
 <body>
 <div id="container">
-    <!-- Top Bar -->
-    <div id="topbar">
-        <div class="topbar-left">
-            <a href="index.html">
-                <img src="../hinh/background.jpg" alt="Logo" id="logo">
-            </a>
-            <span class="brand">
-                <span class="brand-main">BetterLife</span>
-                <span class="brand-sub">.com</span>
-                <div class="brand-slogan">Nâng tầm phong cách sống</div>
-            </span>
-            <span class="hours">
-                <i class="fa-solid fa-clock"></i>
-                <b>08:00 - 18:00</b>
-            </span>
-        </div>
-        <div class="topbar-right">
-            <a href="#">Liên Hệ</a>
-            <span class="divider">|</span>
-            <a href="#">Giới Thiệu</a>
-            <span class="divider">|</span>
-            <a href="#">Chính Sách Bán Hàng</a>
-            <span class="divider">|</span>
-            <span class="icon user-icon">👤</span>
-        </div>
-    </div>
-
-    <!-- Main bar -->
-    <nav id="main-nav">
-        <a href="index.php">TRANG CHỦ</a>
-        <a href="gioithieu.html">GIỚI THIỆU</a>
-        <a href="sanpham.html">SẢN PHẨM</a>
-        <a href="phoicanh.php">THƯ VIỆN PHỐI CẢNH</a>
-        <a href="duan.php">DỰ ÁN</a>
-        <a href="tintuc.html">TIN TỨC</a>
-        <a href="khuyenmai.html">ƯU ĐÃI</a>
-    </nav>
+    <!-- Top Bar, Main bar -->
+    <div id="include-header"></div>
+    <script>
+    $(function () {
+        $("#include-header").load("header.html");
+    });
+    </script>
 
     <section id="slideshow-section">
   <div id="slideshow-wrapper">
@@ -128,6 +99,66 @@
   </div>
 </section>
 </div>
+<!-- Thêm dưới đây -->
+<section class="project-section">
+  <div class="project-bg-overlay"></div>
+  <h2 class="project-title">CÔNG TRÌNH HOÀN THIỆN</h2>
+  <div class="project-slider">
+    <button class="project-btn prev"></button>
+    <div class="project-content">
+      <div class="project-image">
+        <img src="../img/imgduan/duan6.png" alt="Nhà phố Hưng Yên" />
+      </div>
+      <div class="project-info">
+        <h3>Biệt thự Hoàng gia</h3>
+        <p><span style="font-weight:bold">Địa chỉ:</span> Thành phố Hồ Chí Minh</p>
+        <p><span style="font-weight:bold">Loại gạch:</span> Đá trang trí đá núi lửa</p>
+        <p><span style="font-weight:bold">Thời gian thi công:</span> 1 tuần</p>
+      </div>
+    </div>
+  </div>
+  <div class="project-footer">
+    <button class="other-projects-btn" onclick="window.location.href='duan.php'">Các dự án khác</button>
+  </div>
+</section>
+
+<section class="news-section">
+  <h2 class="news-title">TIN TỨC</h2>
+  <div class="news-list">
+    <div class="news-item">
+      <img src="../img/tintuc1.jpg" alt="Catalog gạch ốp lát nhà tắm">
+      <h3>Catalog gạch ốp lát nhà tắm</h3>
+      <p>Catalog gạch ốp lát nhà tắm Trường Phát Ceramics giới thiệu bộ sưu tập Catalog gạch ốp lát nhà tắm...</p>
+      <a href="chitiettin1.php" class="news-btn">ĐỌC TIẾP</a>
+    </div>
+    <div class="news-item">
+      <img src="../img/tintuc2.jpg" alt="Catalog gạch lát nền online">
+      <h3>Catalog gạch lát nền online</h3>
+      <p>Catalog gạch lát nền online Trường Phát Ceramics giới thiệu bộ sưu tập gạch lát nền...</p>
+      <a href="chitiettin2.php" class="news-btn">ĐỌC TIẾP</a>
+    </div>
+    <div class="news-item">
+      <img src="../img/tintuc3.jpg" alt="Quy trình mua và đặt hàng, bảo hành đổi trả">
+      <h3>Quy trình mua và đặt hàng, bảo hành đổi trả</h3>
+      <p>TẠI SAO NÊN MUA ĐÁ SÂN VƯỜN - GẠCH ỐP LÁT TẠI KHO ĐÁ SÂN VƯỜN BETTERLIFE...</p>
+      <a href="chitiettin3.php" class="news-btn">ĐỌC TIẾP</a>
+    </div>
+  </div>
+  <div class="news-list">
+    <div class="news-item">
+      <img src="../img/tintuc4.jpg" alt="Hoa lưu tô">
+      <h3>Hoa lưu tô</h3>
+      <p>Cây Hoa lưu tô (Chionanthus retusa) Cây này có tên khoa học là Chionanthus retusa...</p>
+      <a href="chitiettin4.php" class="news-btn">ĐỌC TIẾP</a>
+    </div>
+    <div class="news-item">
+      <img src="../img/tintuc5.jpg" alt="Đá trầm tích">
+      <h3>Đá trầm tích</h3>
+      <p>Đá trầm tích là một trong 3 dòng đá chính (gồm đá mắc-ma và đá biến chất)...</p>
+      <a href="chitiettin5.php" class="news-btn">ĐỌC TIẾP</a>
+    </div>
+  </div>
+</section>
 
 <div id="include-footer">
             <script>
