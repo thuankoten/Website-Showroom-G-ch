@@ -11,6 +11,8 @@
     <link href="../foldercss/style.css" rel="stylesheet"/>
     <link href="../foldercss/phoicanh.css" rel="stylesheet"/>
     <script src="../jquery-3.7.1.js"></script>
+    <script src="../js/phoicanh.js"></script>
+
 </head>
 <body>
     <div id="container">
@@ -27,6 +29,24 @@
     <section class="banner">
         <img src="../img/thietke_thamkhao.png" alt="Thiết kế tham khảo">
     </section>
+
+    <section class="hero-slider">
+        <div class="slides">
+            <img src="../img/anh_muc_phongkhach_phongngu.jpg" class="slide active" alt="Ảnh 1">
+            <img src="../img/anh_muc_phong_bep.jpg" class="slide" alt="Ảnh 2">
+            <img src="../img/anh_muc_phong_tam.jpg" class="slide" alt="Ảnh 3">
+            <img src="../img/anh_muc_san_vuon.jpg" class="slide" alt="Ảnh 4">
+        </div>
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+        <div class="slider-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>  
+    </section>
+
     
     <!-- Nội dung 4 mục của trang phối cảnh -->
     <section class="category-links">
