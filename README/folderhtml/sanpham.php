@@ -13,12 +13,17 @@
     <script src="js/script.js" defer></script>
 </head>
 <body>
+<div id="container">
+    <!-- Hiển thị topbar và header  -->
     <div id="include-header"></div>
     <script>
     $(function () {
         $("#include-header").load("header.html");
     });
     </script>
+    
+    <!-- Nội dung phần sản phẩm -->
+    
 
     <main>
         <ul id="sanpham">
@@ -56,13 +61,14 @@
         </div>
     </main>
 
-    <div id="include-footer"></div>
+    <!-- Hiển thị footer -->
     <div id="include-footer"></div>
     <script>
     $(function () {
         $("#include-footer").load("footer.html");
     });
     </script>
-    
+</div>      
+
 </body>
 </html>
