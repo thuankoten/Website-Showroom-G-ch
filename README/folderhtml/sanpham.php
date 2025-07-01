@@ -7,14 +7,18 @@
     
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <link href="../foldercss/sanpham.css" rel="stylesheet" />
 
     <!-- JS -->
     <script src="js/script.js" defer></script>
 </head>
 <body>
-    <div id="include-header">
-        <h2>GẠCH MEN - TRANG SẢN PHẨM</h2>
-    </div>
+    <div id="include-header"></div>
+    <script>
+    $(function () {
+        $("#include-header").load("header.html");
+    });
+    </script>
 
     <main>
         <ul id="sanpham">
@@ -52,8 +56,13 @@
         </div>
     </main>
 
-    <div id="include-footer">
-        <p>&copy; 2025 - Công ty Gạch Việt</p>
-    </div>
+    <div id="include-footer"></div>
+    <div id="include-footer"></div>
+    <script>
+    $(function () {
+        $("#include-footer").load("footer.html");
+    });
+    </script>
+    
 </body>
 </html>
