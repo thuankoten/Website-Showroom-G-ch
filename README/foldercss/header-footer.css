@@ -276,3 +276,67 @@
     text-align: left;
     margin-left: 10px;
 }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f1f1f1;
+}
+.footer-col {
+    flex: 1;
+    margin: 0 10px;
+}
+.footer-logo {
+    max-width: 100%;
+    height: auto;
+}
+.footer-contact {
+    list-style: none;
+    padding: 0;
+}
+.footer-contact li {
+    margin: 5px 0;
+}
+.footer-col h3 {
+    margin-top: 0;
+}
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+.footer-col ul li {
+    margin: 5px 0;
+}
+.footer-col ul li a {
+    text-decoration: none;
+    color: #333;
+}
+.footer-col.app-social {
+    text-align: right;
+}
+.footer-apps {
+    display: flex;
+    justify-content: flex-end;
+}
+.footer-app-badge {
+    margin-left: 10px;
+    max-width: 100%;
+    height: auto;
+}
+.footer-social {
+    margin-top: 10px;
+}
+.footer-icons {
+    display: flex;
+    justify-content: flex-end;
+}
+.footer-icons a {
+    margin-left: 10px;
+    color: #333;
+    text-decoration: none;
+}
