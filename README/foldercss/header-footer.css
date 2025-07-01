@@ -23,8 +23,10 @@
 #logo {
     width: 60px;
     height: 60px;
-    object-fit: contain;
+    object-fit: cover;
+    aspect-ratio: 1/1;
     margin-right: 8px;
+    border-radius: 50%;
 }
 .brand {
     display: flex;
