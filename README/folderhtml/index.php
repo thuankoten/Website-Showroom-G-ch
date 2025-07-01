@@ -48,7 +48,7 @@
     <div class="category-item">
   <div class="img-hover-box">
     <img src="../img/banner4.jpg" alt="Gạch ốp tường">
-    <button class="choose-btn" onclick="window.location.href='sanpham.html'">
+    <button class="choose-btn" onclick="window.location.href='sanpham.php'">
       <i class="fa-solid fa-layer-group"></i> CHỌN GẠCH ỐP TƯỜNG
     </button>
   </div>
@@ -60,7 +60,7 @@
 <div class="category-item">
   <div class="img-hover-box">
     <img src="../img/gachlatsan.jpg" alt="Gạch lát sân">
-    <button class="choose-btn" onclick="window.location.href='sanpham.html'">
+    <button class="choose-btn" onclick="window.location.href='sanpham.php'">
       <i class="fa-solid fa-layer-group"></i> CHỌN ĐÁ LÁT SÂN
     </button>
   </div>
@@ -72,7 +72,7 @@
 <div class="category-item">
   <div class="img-hover-box">
     <img src="../img/banner3.jpg" alt="Gạch ốp lát">
-    <button class="choose-btn" onclick="window.location.href='sanpham.html'">
+    <button class="choose-btn" onclick="window.location.href='sanpham.php'">
       <i class="fa-solid fa-layer-group"></i> CHỌN GẠCH ỐP LÁT
     </button>
   </div>
