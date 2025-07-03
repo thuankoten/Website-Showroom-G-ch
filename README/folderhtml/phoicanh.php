@@ -21,7 +21,7 @@
     <div id="include-header"></div>
     <script>
     $(function () {
-        $("#include-header").load("header.html");
+        $("#include-header").load("header.php");
     });
     </script>
 
@@ -51,25 +51,25 @@
     <!-- Nội dung 4 mục của trang phối cảnh -->
     <section class="category-links">
         <div class="category-item">
-            <a href="phoi_canh/phongkhach_phongngu.php">
+            <a href="phongkhach_phongngu.php">
                 <img src="../img/anh_muc_phongkhach_phongngu.jpg" alt="Phối cảnh phòng khách & phòng ngủ">
                 <h3>Phối cảnh phòng khách & phòng ngủ</h3>
             </a>
         </div>
         <div class="category-item">
-            <a href="phoi_canh/phongbep.php">
+            <a href="phongbep.php">
                 <img src="../img/anh_muc_phong_bep.jpg" alt="Phối cảnh phòng bếp">
                 <h3>Phối cảnh phòng bếp</h3>
             </a>
         </div>
         <div class="category-item">
-            <a href="phoi_canh/phongvesinh.php">
+            <a href="phongvesinh.php">
                 <img src="../img/anh_muc_phong_tam.jpg" alt="Phối cảnh phòng vệ sinh">
                 <h3>Phối cảnh phòng vệ sinh</h3>
             </a>
         </div>
         <div class="category-item">
-            <a href="phoi_canh/sanvuon.php">
+            <a href="sanvuon.php">
                 <img src="../img/anh_muc_san_vuon.jpg" alt="Phối cảnh sân vườn">
                 <h3>Phối cảnh sân vườn</h3>
             </a>
@@ -82,7 +82,7 @@
     <div id="include-footer"></div>
     <script>
     $(function () {
-        $("#include-footer").load("footer.html");
+        $("#include-footer").load("footer.php");
     });
     </script>
 
