@@ -5,16 +5,19 @@
     <title>Trang sản phẩm</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <link href="../foldercss/sanpham.css" rel="stylesheet" />
+    <link href="foldercss/sanpham.css" rel="stylesheet" />
 
     <!-- JS -->
     <script src="js/script.js" defer></script>
 </head>
 <body>
 <div id="container">
-    <!-- Hiển thị topbar và header  -->
+    <!-- Hiển thị topbar và header -->
     <div id="include-header"></div>
     <script>
     $(function () {
@@ -23,8 +26,6 @@
     </script>
     
     <!-- Nội dung phần sản phẩm -->
-    
-
     <main>
         <ul id="sanpham">
             <li><a href="#">Tất cả</a></li>
@@ -39,22 +40,25 @@
             <h1>Sản phẩm hot</h1>
 
             <div class="anh1">
-                <img src="images/gach1.jpg" alt="Gạch 1">
+                <img src="img/gach1.jpg" alt="Gạch 1">
                 <div class="ten">Gạch 30x30</div>
                 <div class="gia">Giá: 150.000đ/m²</div>
             </div>
+
             <div class="anh1">
-                <img src="images/gach2.jpg" alt="Gạch 2">
+                <img src="img/gach2.jpg" alt="Gạch 2">
                 <div class="ten">Gạch 60x60</div>
                 <div class="gia">Giá: 250.000đ/m²</div>
             </div>
+
             <div class="anh1">
-                <img src="images/gach3.jpg" alt="Gạch 3">
+                <img src="img/gahh3.jpg" alt="Gạch 3"> <!-- nếu tên đúng là gahh3 -->
                 <div class="ten">Gạch thẻ</div>
                 <div class="gia">Giá: 180.000đ/m²</div>
             </div>
+
             <div class="anh1">
-                <img src="images/gach4.jpg" alt="Gạch 4">
+                <img src="img/gach4.jpg" alt="Gạch 4">
                 <div class="ten">Gạch 80x80</div>
                 <div class="gia">Giá: 320.000đ/m²</div>
             </div>
@@ -69,6 +73,5 @@
     });
     </script>
 </div>      
-
 </body>
 </html>
