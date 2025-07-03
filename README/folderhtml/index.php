@@ -18,7 +18,7 @@
     <div id="include-header"></div>
     <script>
     $(function () {
-        $("#include-header").load("header.html");
+        $("#include-header").load("header.php");
     });
     </script>
 
@@ -161,7 +161,7 @@
 </section>
 
 <div id="include-footer">
-            <script>
+<script>
     $(function () {
         $("#include-footer").load("footer.html");
     });
