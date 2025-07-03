@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,18 +37,27 @@
             <a href="#">Chính Sách Bán Hàng</a>
             <span class="divider">|</span>
             <span class="icon user-icon">👤</span>
+            <?php
+            if (isset($_SESSION['user_name'])) {
+                echo '<span class="top-bar__right__item">Hi, ' . htmlspecialchars($_SESSION['user_name']) . '</span><span class="pipe2">|</span>';
+                echo '<a href="logout.php" class="top-bar__right__item">Đăng xuất</a>';
+            } else {
+                echo '<a href="register.php" class="top-bar__right__item">Đăng ký</a><span class="pipe2">|</span>';
+                echo '<a href="login.php" class="top-bar__right__item">Đăng nhập</a>';
+            }
+            ?>
         </div>
     </div>
 
     <!-- Main bar -->
     <nav id="main-nav">
         <a href="index.php">TRANG CHỦ</a>
-        <a href="gioithieu.html">GIỚI THIỆU</a>
-        <a href="sanpham.html">SẢN PHẨM</a>
+        <a href="gioithieu.php">GIỚI THIỆU</a>
+        <a href="sanpham.php">SẢN PHẨM</a>
         <a href="phoicanh.php">THƯ VIỆN PHỐI CẢNH</a>
         <a href="duan.php">DỰ ÁN</a>
         <a href="tintuc.php">TIN TỨC</a>
-        <a href="khuyenmai.html">ƯU ĐÃI</a>
+        <a href="khuyenmai.php">ƯU ĐÃI</a>
     </nav>
 </body>
 </html>
