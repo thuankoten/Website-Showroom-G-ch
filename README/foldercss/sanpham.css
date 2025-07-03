@@ -1,49 +1,56 @@
-#sanpham {
-    list-style: none;
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    margin: 20px 0;
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
     padding: 0;
 }
 
-#sanpham li a {
+#sanpham-menu {
+    display: flex;
+    list-style: none;
+    padding: 10px;
+    background: #eee;
+    justify-content: center;
+    gap: 20px;
+}
+
+#sanpham-menu li a {
     text-decoration: none;
-    padding: 8px 15px;
-    background-color: #ddd;
-    border-radius: 4px;
-    color: #000;
+    color: #333;
     font-weight: bold;
 }
 
 #sanphamhot {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
     padding: 20px;
+    text-align: center;
 }
 
 .anh1 {
+    display: inline-block;
     width: 220px;
-    border: 1px solid #ccc;
+    margin: 10px;
     padding: 10px;
-    border-radius: 6px;
-    text-align: center;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
 }
 
 .anh1 img {
     width: 100%;
-    border-radius: 4px;
+    height: auto;
+    border-radius: 5px;
 }
 
 .ten {
-    margin-top: 10px;
+    font-size: 18px;
     font-weight: bold;
+    margin-top: 10px;
 }
 
 .gia {
-    color: red;
+    color: rgba(128, 0, 0, 0.937);
     font-weight: bold;
     margin-top: 5px;
 }
