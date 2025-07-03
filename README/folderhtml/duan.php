@@ -86,14 +86,89 @@
         </div>
         
         <br>
+        <h1>Danh Mục <span>Dự án</span><br><hr></h1>
+        <br>
         <!-- Các nút lọc -->
         <div class="filter-buttons">
-            <button class="filter-btn active">Tất cả dự án</button>
-            <button class="filter-btn">Khu dân cư</button>
-            <button class="filter-btn">Khu thương mại</button>
-            <button class="filter-btn">Nhà ở</button>
-            <button class="filter-btn">Công trình công cộng</button>
-        </div>
+    <button class="filter-btn <?php if (!isset($_GET['loai'])) echo 'active'; ?>" data-loai="0">Tất cả dự án</button>
+    <button class="filter-btn <?php if (isset($_GET['loai']) && $_GET['loai'] == 1) echo 'active'; ?>" data-loai="1">Khu dân cư</button>
+    <button class="filter-btn <?php if (isset($_GET['loai']) && $_GET['loai'] == 2) echo 'active'; ?>" data-loai="2">Khu thương mại</button>
+    <button class="filter-btn <?php if (isset($_GET['loai']) && $_GET['loai'] == 3) echo 'active'; ?>" data-loai="3">Nhà ở</button>
+    <button class="filter-btn <?php if (isset($_GET['loai']) && $_GET['loai'] == 4) echo 'active'; ?>" data-loai="4">Công trình công cộng</button>
+</div>
+
+
+
+
+
+        <!-- Danh sách hiện -->
+         <?php 
+    $link = mysqli_connect("127.0.0.1", "root", "", "showroom_gach", 3307);
+    mysqli_set_charset($link, "utf8");
+    $sd=12;
+    $dk_loai = "";
+        if (isset($_GET['loai']) && is_numeric($_GET['loai'])) {
+            $loai = $_GET['loai'];
+            $dk_loai = "WHERE id_loaiduan = $loai";
+        }
+    // lấy tất cả sản phẩm
+    $sl="select * from duan $dk_loai ORDER BY id_loaiduan";
+    $kq=mysqli_query($link,$sl);
+    $tsp=mysqli_num_rows($kq);
+    // Tổng số trang
+    $tst=ceil($tsp/$sd);
+
+    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+        $vt = ($page - 1) * $sd;
+    //Truy vẫn lấy sản phẩm theo vị trí
+    $sl2="select * from duan $dk_loai ORDER BY id_loaiduan LIMIT $vt,$sd";
+    $kq2=mysqli_query($link,$sl2);
+    ?>
+    <div id="duan-list" class="duan-grid">
+<?php while ($d2 = mysqli_fetch_array($kq2)) { ?>
+    <div class="duan-item">
+        <img src="../img/imgduan/<?php echo $d2['imgduan']; ?>" alt="Ảnh dự án">
+        <div class="duan-title"><?php echo strtoupper($d2['ten_duan']); ?></div>
+        <div class="duan-address"><i class="fa fa-location-dot"></i> <?php echo $d2['dc_duan']; ?></div>
+    </div>
+<?php } ?>
+</div>
+
+    <div class="pagination">
+<?php
+    // Xác định biến loai (nếu có lọc)
+    $loai = isset($_GET['loai']) ? intval($_GET['loai']) : 0;
+    $url_prefix = $loai > 0 ? "?loai=$loai&" : "?";
+    $anchor = "#duan-list";
+
+    // Nút "Trang trước"
+    if ($page > 1) {
+        echo "<a href='{$url_prefix}page=" . ($page - 1) . "{$anchor}' class='pag-btn'><i class='fa-solid fa-angle-left'></i></a>";
+    } else {
+        echo "<span class='pag-btn disabled'><i class='fa-solid fa-angle-left'></i></span>";
+    }
+
+    // Số trang
+    for ($i = 1; $i <= $tst; $i++) {
+        if ($i == $page) {
+            echo "<span class='pnow pag-btn'>$i</span>";
+        } else {
+            echo "<a href='{$url_prefix}page=$i{$anchor}' class='pag-btn'>$i</a>";
+        }
+    }
+
+    // Nút "Trang sau"
+    if ($page < $tst) {
+        echo "<a href='{$url_prefix}page=" . ($page + 1) . "{$anchor}' class='pag-btn'><i class='fa-solid fa-angle-right'></i></a>";
+    } else {
+        echo "<span class='pag-btn disabled'><i class='fa-solid fa-angle-right'></i></span>";
+    }
+?>
+</div>
+
+
+
+
         <script src="../js/duan.js"></script>
     </main>
     
