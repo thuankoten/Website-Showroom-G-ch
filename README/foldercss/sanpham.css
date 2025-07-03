@@ -1,77 +1,49 @@
-<DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <title>Trang sản phẩm</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+#sanpham {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin: 20px 0;
+    padding: 0;
+}
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+#sanpham li a {
+    text-decoration: none;
+    padding: 8px 15px;
+    background-color: #ddd;
+    border-radius: 4px;
+    color: #000;
+    font-weight: bold;
+}
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <link href="foldercss/sanpham.css" rel="stylesheet" />
+#sanphamhot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
 
-    <!-- JS -->
-    <script src="js/script.js" defer></script>
-</head>
-<body>
-<div id="container">
-    <!-- Header -->
-    <div id="include-header"></div>
-    <script>
-        $(function () {
-            $("#include-header").load("header.html");
-        });
-    </script>
+.anh1 {
+    width: 220px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+}
 
-    <!-- Nội dung -->
-    <main>
-        <ul id="sanpham">
-            <li><a href="img/gach1.jpg" target="_blank">Gạch 30x30</a></li>
-            <li><a href="img/gach2.jpg" target="_blank">Gạch 30x60</a></li>
-            <li><a href="img/gach1.jpg" target="_blank">Gạch 60x60</a></li>
-            <li><a href="img/gach4.jpg" target="_blank">Gạch 80x80</a></li>
-            <li><a href="img/gahh3.jpg" target="_blank">Gạch thẻ</a></li>
-        </ul>
+.anh1 img {
+    width: 100%;
+    border-radius: 4px;
+}
 
-        <div id="sanphamhot">
-            <h1>Sản phẩm hot</h1>
+.ten {
+    margin-top: 10px;
+    font-weight: bold;
+}
 
-            <div class="anh1">
-                <img src="img/gach1.jpg" alt="Gạch 1">
-                <div class="ten">Gạch 30x30</div>
-                <div class="gia">Giá: 150.000đ/m²</div>
-            </div>
-
-            <div class="anh1">
-                <img src="img/gach2.jpg" alt="Gạch 2">
-                <div class="ten">Gạch 60x60</div>
-                <div class="gia">Giá: 250.000đ/m²</div>
-            </div>
-
-            <div class="anh1">
-                <img src="img/gahh3.jpg" alt="Gạch 3">
-                <div class="ten">Gạch thẻ</div>
-                <div class="gia">Giá: 180.000đ/m²</div>
-            </div>
-
-            <div class="anh1">
-                <img src="img/gach4.jpg" alt="Gạch 4">
-                <div class="ten">Gạch 80x80</div>
-                <div class="gia">Giá: 320.000đ/m²</div>
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <div id="include-footer"></div>
-    <script>
-        $(function () {
-            $("#include-footer").load("footer.html");
-        });
-    </script>
-</div>
-</body>
-</html>
-
+.gia {
+    color: red;
+    font-weight: bold;
+    margin-top: 5px;
+}
