@@ -62,3 +62,20 @@ filterButtons.forEach(btn => {
     btn.classList.add('active');
   });
 });
+
+//Nút lọc dự án nè
+document.addEventListener("DOMContentLoaded", function () {
+    const filterButtons = document.querySelectorAll(".filter-btn");
+
+    filterButtons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+            const loai = this.getAttribute("data-loai");
+            let url = "duan.php";
+            if (loai !== "0") {
+                url += "?loai=" + loai;
+            }
+            window.location.href = url;
+        });
+    });
+});
+
