@@ -18,7 +18,7 @@
     <div id="include-header"></div>
     <script>
     $(function () {
-        $("#include-header").load("header.html");
+        $("#include-header").load("header.php");
     });
     </script>
 

@@ -1,24 +1,22 @@
+
+
 body {
-    font-family: Arial;
-    text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
     margin: 0;
     padding: 0;
 }
 
-#sanpham {
+#sanpham-menu {
+    display: flex;
     list-style: none;
     padding: 10px;
-    background: #f2f2f2;
-    display: flex;
+    background: #eee;
     justify-content: center;
-    flex-wrap: wrap;
+    gap: 20px;
 }
 
-#sanpham li {
-    margin: 10px;
-}
-
-#sanpham a {
+#sanpham-menu li a {
     text-decoration: none;
     color: #333;
     font-weight: bold;
@@ -26,25 +24,33 @@ body {
 
 #sanphamhot {
     padding: 20px;
+    text-align: center;
 }
 
 .anh1 {
     display: inline-block;
+    width: 220px;
     margin: 10px;
-    border: 1px solid #ccc;
     padding: 10px;
-    border-radius: 8px;
-    width: 200px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
 }
 
 .anh1 img {
     width: 100%;
     height: auto;
-    border-radius: 4px;
+    border-radius: 5px;
 }
 
-.ten, .gia {
-    margin-top: 10px;
+.ten {
+    font-size: 18px;
     font-weight: bold;
+    margin-top: 10px;
+}
+
+.gia {
+    color: rgba(128, 0, 0, 0.937);
+    font-weight: bold;
+    margin-top: 5px;
 }
