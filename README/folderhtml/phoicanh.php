@@ -51,25 +51,25 @@
     <!-- Nội dung 4 mục của trang phối cảnh -->
     <section class="category-links">
         <div class="category-item">
-            <a href="phongkhach_phongngu.php">
+            <a href="phoi_canh/phongkhach_phongngu.php">
                 <img src="../img/anh_muc_phongkhach_phongngu.jpg" alt="Phối cảnh phòng khách & phòng ngủ">
                 <h3>Phối cảnh phòng khách & phòng ngủ</h3>
             </a>
         </div>
         <div class="category-item">
-            <a href="phongbep.php">
+            <a href="phoi_canh/phongbep.php">
                 <img src="../img/anh_muc_phong_bep.jpg" alt="Phối cảnh phòng bếp">
                 <h3>Phối cảnh phòng bếp</h3>
             </a>
         </div>
         <div class="category-item">
-            <a href="phongvesinh.php">
+            <a href="phoi_canh/phongvesinh.php">
                 <img src="../img/anh_muc_phong_tam.jpg" alt="Phối cảnh phòng vệ sinh">
                 <h3>Phối cảnh phòng vệ sinh</h3>
             </a>
         </div>
         <div class="category-item">
-            <a href="sanvuon.php">
+            <a href="phoi_canh/sanvuon.php">
                 <img src="../img/anh_muc_san_vuon.jpg" alt="Phối cảnh sân vườn">
                 <h3>Phối cảnh sân vườn</h3>
             </a>
