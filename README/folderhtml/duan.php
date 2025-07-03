@@ -73,7 +73,6 @@
             <div class="sliderda">
                 <div class="name">Nội dung 7</div>
                 <div class="des">Hình ảnh dự án </div>
-                <button>Thêm</button>
             </div>
         </div>
         
@@ -166,20 +165,16 @@
 ?>
 </div>
 
-
-
-
         <script src="../js/duan.js"></script>
     </main>
-    
-
-    <!-- Hiển thị footer -->
-    <div id="include-footer"></div>
-    <script>
-    $(function () {
-        $("#include-footer").load("footer.html");
-    });
-    </script>
 </div>
+ <!-- Hiển thị footer -->
+    <div id="include-footer">
+    <script>
+        $(function () {
+            $("#include-footer").load("footer.php");
+        });
+    </script>
+    </div>
 </body>
 </html>
