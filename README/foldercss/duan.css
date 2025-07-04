@@ -271,3 +271,7 @@
     color: white;
     border-color: red;
 }
+
+html {
+  scroll-behavior: smooth;
+}
