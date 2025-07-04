@@ -23,7 +23,7 @@
     </script>
 
     <!-- Nội dung phần dự án -->
-    <main>
+    <>
         <div class="contentda">
         <div class="mainduan">
         <!-- slider dự án -->
@@ -100,70 +100,73 @@
 
 
 
-        <!-- Danh sách hiện -->
-         <?php 
-    $link = mysqli_connect("127.0.0.1", "root", "", "showroom_gach", 3307);
-    mysqli_set_charset($link, "utf8");
-    $sd=12;
-    $dk_loai = "";
-        if (isset($_GET['loai']) && is_numeric($_GET['loai'])) {
-            $loai = $_GET['loai'];
-            $dk_loai = "WHERE id_loaiduan = $loai";
-        }
-    // lấy tất cả sản phẩm
-    $sl="select * from duan $dk_loai ORDER BY id_loaiduan";
-    $kq=mysqli_query($link,$sl);
-    $tsp=mysqli_num_rows($kq);
-    // Tổng số trang
-    $tst=ceil($tsp/$sd);
+        <?php 
+$link = mysqli_connect("localhost", "root", "", "showroom_gach");
+mysqli_set_charset($link, "utf8");
 
-    $page = isset($_GET['page']) ? $_GET['page'] : 1;
-        $vt = ($page - 1) * $sd;
-    //Truy vẫn lấy sản phẩm theo vị trí
-    $sl2="select * from duan $dk_loai ORDER BY id_loaiduan LIMIT $vt,$sd";
-    $kq2=mysqli_query($link,$sl2);
-    ?>
-    <div id="duan-list" class="duan-grid">
-<?php while ($d2 = mysqli_fetch_array($kq2)) { ?>
+// Thiết lập số dòng mỗi trang
+$sd = 12;
+$loai = isset($_GET['loai']) ? intval($_GET['loai']) : 0;
+$dk_loai = $loai > 0 ? "WHERE id_loaiduan = $loai" : "";
+
+// Tổng số sản phẩm
+$sql_total = "SELECT COUNT(*) AS total FROM duan $dk_loai";
+$res_total = mysqli_query($link, $sql_total);
+$tsp = mysqli_fetch_assoc($res_total)['total'];
+$tst = ceil($tsp / $sd); // Tổng số trang
+
+$page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
+$vt = ($page - 1) * $sd;
+
+// Lấy dữ liệu theo trang
+$sql = "SELECT * FROM duan $dk_loai ORDER BY id_loaiduan LIMIT $vt, $sd";
+$kq2 = mysqli_query($link, $sql);
+?>
+
+<div id="duan-list" class="duan-grid">
+  <?php while ($d2 = mysqli_fetch_assoc($kq2)) { ?>
     <div class="duan-item">
         <img src="../img/imgduan/<?php echo $d2['imgduan']; ?>" alt="Ảnh dự án">
         <div class="duan-title"><?php echo strtoupper($d2['ten_duan']); ?></div>
         <div class="duan-address"><i class="fa fa-location-dot"></i> <?php echo $d2['dc_duan']; ?></div>
     </div>
-<?php } ?>
+  <?php } ?>
 </div>
 
-    <div class="pagination">
-<?php
-    // Xác định biến loai (nếu có lọc)
-    $loai = isset($_GET['loai']) ? intval($_GET['loai']) : 0;
+<!-- PHÂN TRANG -->
+<div class="pagination">
+  <?php
     $url_prefix = $loai > 0 ? "?loai=$loai&" : "?";
     $anchor = "#duan-list";
 
-    // Nút "Trang trước"
+    // Trang trước
     if ($page > 1) {
-        echo "<a href='{$url_prefix}page=" . ($page - 1) . "{$anchor}' class='pag-btn'><i class='fa-solid fa-angle-left'></i></a>";
+        $prev = $page - 1;
+        echo "<a href='{$url_prefix}page=$prev$anchor' class='pag-btn'><i class='fa-solid fa-angle-left'></i></a>";
     } else {
         echo "<span class='pag-btn disabled'><i class='fa-solid fa-angle-left'></i></span>";
     }
 
-    // Số trang
+    // Các số trang
     for ($i = 1; $i <= $tst; $i++) {
         if ($i == $page) {
             echo "<span class='pnow pag-btn'>$i</span>";
         } else {
-            echo "<a href='{$url_prefix}page=$i{$anchor}' class='pag-btn'>$i</a>";
+            echo "<a href='{$url_prefix}page=$i$anchor' class='pag-btn'>$i</a>";
         }
     }
 
-    // Nút "Trang sau"
+    // Trang sau
     if ($page < $tst) {
-        echo "<a href='{$url_prefix}page=" . ($page + 1) . "{$anchor}' class='pag-btn'><i class='fa-solid fa-angle-right'></i></a>";
+        $next = $page + 1;
+        echo "<a href='{$url_prefix}page=$next$anchor' class='pag-btn'><i class='fa-solid fa-angle-right'></i></a>";
     } else {
         echo "<span class='pag-btn disabled'><i class='fa-solid fa-angle-right'></i></span>";
     }
-?>
+  ?>
 </div>
+
+<?php mysqli_close($link); ?>
 
         <script src="../js/duan.js"></script>
     </main>
