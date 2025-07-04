@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1:3307
--- Thời gian đã tạo: Th7 04, 2025 lúc 05:08 AM
+-- Máy chủ: 127.0.0.1:3306
+-- Thời gian đã tạo: Th7 04, 2025 lúc 12:33 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `admin`
+-- Cấu trúc bảng cho bảng `admins`
 --
 
-CREATE TABLE `admin` (
+CREATE TABLE `admins` (
   `id` bigint(20) NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -35,8 +35,8 @@ CREATE TABLE `admin` (
   `remembertoken` varchar(100) NOT NULL,
   `phone` varchar(30) NOT NULL,
   `address` text NOT NULL,
-  `status` enum('Active','Inactive') NOT NULL,
-  `role` enum('Admin','Staff') NOT NULL
+  `status` enum('active','inactive') NOT NULL,
+  `role` enum('admin','staff') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -177,10 +177,10 @@ CREATE TABLE `orders` (
   `email` varchar(255) NOT NULL,
   `phone` varchar(20) NOT NULL,
   `address` text NOT NULL,
-  `delivery_method` enum('Giao hàng tận nhà','Nhận hàng tại cửa hàng') NOT NULL,
-  `payment_method` enum('Thanh toán khi nhận hàng','Chuyển khoản ngân hàng','Thẻ tín dụng/Ghi nợ') NOT NULL,
+  `delivery_method` enum('giao hàng tận nhà','nhận hàng tại cửa hàng') NOT NULL,
+  `payment_method` enum('thanh toán khi nhận hàng','chuyển khoản ngân hàng','thẻ tín dụng/ghi nợ') NOT NULL,
   `order_note` text NOT NULL,
-  `status` enum('Đang chờ','Đang xử lý','Đã vận chuyển','Đã giao hàng','Đã huỷ') NOT NULL
+  `status` enum('đang chờ','đang xử lý','đã vận chuyển','đã giao hàng','đã huỷ') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -326,8 +326,8 @@ CREATE TABLE `users` (
   `password` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `phone` varchar(30) NOT NULL,
   `address` text NOT NULL,
-  `status` enum('Active','Inactive') NOT NULL,
-  `role` enum('User') NOT NULL
+  `status` enum('active','inactive') NOT NULL,
+  `role` enum('user') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -360,9 +360,9 @@ INSERT INTO `uudai` (`id_uudai`, `sanpham_id`, `phamtram_uudai`, `giasau_uudai`,
 --
 
 --
--- Chỉ mục cho bảng `admin`
+-- Chỉ mục cho bảng `admins`
 --
-ALTER TABLE `admin`
+ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -452,9 +452,9 @@ ALTER TABLE `uudai`
 --
 
 --
--- AUTO_INCREMENT cho bảng `admin`
+-- AUTO_INCREMENT cho bảng `admins`
 --
-ALTER TABLE `admin`
+ALTER TABLE `admins`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
