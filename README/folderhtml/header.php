@@ -10,6 +10,7 @@
     <script src="../jquery-3.7.1.js"></script>
     <script src="../javascript/index.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
 </head>
 <body>
     <div id="topbar">
@@ -36,6 +37,14 @@
             <span class="divider">|</span>
             <a href="#">Chính Sách Bán Hàng</a>
             <span class="divider">|</span>
+            
+            <!-- Giỏ hàng -->
+            <a href="cart.php" class="cart-icon">
+                <i class="fa-solid fa-shopping-cart"></i>
+                <span class="cart-count" id="cart-count">0</span>
+            </a>
+            <span class="divider">|</span>
+            
             <span class="icon user-icon">👤</span>
             <?php
             if (isset($_SESSION['user_name'])) {
@@ -59,5 +68,40 @@
         <a href="tintuc.php">TIN TỨC</a>
         <a href="khuyenmai.php">ƯU ĐÃI</a>
     </nav>
+    
+    <script>
+        // Load cart count when page loads
+        $(document).ready(function() {
+            updateCartCount();
+        });
+        
+        // Function to update cart count
+        function updateCartCount() {
+            $.ajax({
+                url: 'cart_api.php',
+                method: 'POST',
+                data: { action: 'get_cart_count' },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        const count = response.count;
+                        const cartCountElement = $('#cart-count');
+                        
+                        if (count > 0) {
+                            cartCountElement.text(count).removeClass('hidden');
+                        } else {
+                            cartCountElement.addClass('hidden');
+                        }
+                    }
+                },
+                error: function() {
+                    console.error('Error loading cart count');
+                }
+            });
+        }
+        
+        // Make updateCartCount available globally
+        window.updateCartCount = updateCartCount;
+    </script>
 </body>
 </html>
