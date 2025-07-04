@@ -20,48 +20,44 @@
     </script>
 
     <main>
-      <div class="container">
-        <h2>Các sản phẩm đang khuyến mãi của hệ thống showroom HX trên toàn quốc</h2>
-        <div class="products">
-          <?php
-          // Viết PHP ngay trong <main>
-          $link = mysqli_connect("127.0.0.1", "root", "", "showroom_gach", 3307);
-          mysqli_set_charset($link, "utf8");
+  <div class="container">
+    <h2>Các sản phẩm đang khuyến mãi của hệ thống showroom HX trên toàn quốc</h2>
+    <div class="products">
+      <?php
+      $link = mysqli_connect("localhost", "root", "", "showroom_gach");
+      mysqli_set_charset($link, "utf8");
 
-          $sql = "SELECT sp.ten_sanpham, sp.image, sp.gia, uu.phamtram_uudai
-                  FROM sanpham sp
-                  JOIN uudai uu ON sp.sanpham_id = uu.sanpham_id
-                  WHERE uu.trangthai_uudai = 0";
+      $sql = "SELECT sp.sanpham_id, sp.ten_sanpham, sp.image, sp.gia, uu.phamtram_uudai
+              FROM sanpham sp
+              JOIN uudai uu ON sp.sanpham_id = uu.sanpham_id
+              WHERE uu.trangthai_uudai = 0";
+      $result = mysqli_query($link, $sql);
 
-          $result = mysqli_query($link, $sql);
-
-          while ($sp = mysqli_fetch_assoc($result)) {
-              $gia = (float)$sp['gia'];
-              $phantram = (float)$sp['phamtram_uudai'];
-              $gia_sau_uudai = $gia - ($gia * $phantram / 100);
-
-              // Thay đổi thư mục theo nhu cầu
-              $folder = "cloai6060";
-              $imagePath = "../foldercss/Anhsp/$folder/Latnen/" . $sp['image'];
-          ?>
-          <div class="product">
-            <div class="discount-badge">-<?php echo $phantram; ?>%</div>
-            <img src="<?php echo $imagePath; ?>" alt="<?php echo $sp['ten_sanpham']; ?>">
-            <div class="product-info">
-              <h4><?php echo $sp['ten_sanpham']; ?></h4>
-              <div>
-                <span class="price"><?php echo number_format($gia); ?> đ</span>
-                <span class="new-price"><?php echo number_format($gia_sau_uudai); ?> đ</span>
-              </div>
-            </div>
+      while ($sp = mysqli_fetch_assoc($result)) {
+          $gia = (float)$sp['gia'];
+          $phantram = (float)$sp['phamtram_uudai'];
+          $gia_sau_uudai = $gia - ($gia * $phantram / 100);
+          $gia_goc = $gia > 0 ? number_format($gia) . " đ" : "Liên hệ";
+          $gia_km = $gia > 0 ? number_format($gia_sau_uudai) . " đ" : "Liên hệ";
+      ?>
+      <div class="product">
+        <div class="discount-badge">-<?php echo $phantram; ?>%</div>
+        <a href="chitiet.php?id=<?php echo $sp['sanpham_id']; ?>">
+          <img src="data:image/jpeg;base64,<?php echo base64_encode($sp['image']); ?>" alt="<?php echo $sp['ten_sanpham']; ?>">
+        </a>
+        <div class="product-info">
+          <h4><?php echo $sp['ten_sanpham']; ?></h4>
+          <div>
+            <span class="price"><?php echo $gia_goc; ?></span>
+            <span class="new-price"><?php echo $gia_km; ?></span>
           </div>
-          <?php
-          }
-          mysqli_close($link);
-          ?>
         </div>
       </div>
-    </main>
+      <?php } mysqli_close($link); ?>
+    </div>
+  </div>
+</main>
+
 </div>
 
     <div id="include-footer">
