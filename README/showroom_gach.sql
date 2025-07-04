@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3307
--- Thời gian đã tạo: Th7 03, 2025 lúc 01:36 PM
+-- Thời gian đã tạo: Th7 04, 2025 lúc 05:08 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -20,6 +20,49 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `showroom_gach`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `remembertoken` varchar(100) NOT NULL,
+  `phone` varchar(30) NOT NULL,
+  `address` text NOT NULL,
+  `status` enum('Active','Inactive') NOT NULL,
+  `role` enum('Admin','Staff') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `cart_items`
+--
+
+CREATE TABLE `cart_items` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `card_id` bigint(20) UNSIGNED NOT NULL,
+  `sp_id` int(11) NOT NULL,
+  `qty` int(10) UNSIGNED NOT NULL,
+  `price` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -119,6 +162,42 @@ INSERT INTO `loai_sanpham` (`loai_id`, `loai_name`) VALUES
 (1, 'GẠCH LÁT NỀN'),
 (2, 'GẠCH ỐP TƯỜNG'),
 (3, 'GẠCH LÁT SÂN');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `order_code` varchar(50) NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `full_name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `address` text NOT NULL,
+  `delivery_method` enum('Giao hàng tận nhà','Nhận hàng tại cửa hàng') NOT NULL,
+  `payment_method` enum('Thanh toán khi nhận hàng','Chuyển khoản ngân hàng','Thẻ tín dụng/Ghi nợ') NOT NULL,
+  `order_note` text NOT NULL,
+  `status` enum('Đang chờ','Đang xử lý','Đã vận chuyển','Đã giao hàng','Đã huỷ') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `order_items`
+--
+
+CREATE TABLE `order_items` (
+  `id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `discount_price` decimal(10,2) NOT NULL,
+  `size` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -234,9 +313,72 @@ INSERT INTO `sanpham` (`sanpham_id`, `ten_sanpham`, `ma_sp`, `bemat`, `chatlieu`
 (59, 'Ý Mỹ 60×60 P65073R\r\n', 'P65073R', 'Matt', 'Granite', 'Gạch lát nền', 'P65073R.webp', 400000, 1, 2),
 (60, 'Ý Mỹ 60×60 F68001', 'F68001', 'Nhẵn bóng', 'Granite', 'Gạch lát nền', 'F68001.webp', 360000, 1, 2);
 
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `phone` varchar(30) NOT NULL,
+  `address` text NOT NULL,
+  `status` enum('Active','Inactive') NOT NULL,
+  `role` enum('User') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `uudai`
+--
+
+CREATE TABLE `uudai` (
+  `id_uudai` int(11) NOT NULL,
+  `sanpham_id` int(11) NOT NULL,
+  `phamtram_uudai` decimal(10,0) NOT NULL,
+  `giasau_uudai` decimal(10,0) NOT NULL,
+  `ngaybd_uudai` date NOT NULL,
+  `ngaykt_uudai` date NOT NULL,
+  `mota_uudai` text NOT NULL,
+  `trangthai_uudai` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `uudai`
+--
+
+INSERT INTO `uudai` (`id_uudai`, `sanpham_id`, `phamtram_uudai`, `giasau_uudai`, `ngaybd_uudai`, `ngaykt_uudai`, `mota_uudai`, `trangthai_uudai`) VALUES
+(1, 51, 7, 0, '2025-07-03', '2025-08-31', '', 0),
+(2, 52, 15, 0, '2025-07-03', '2025-08-31', '', 0);
+
 --
 -- Chỉ mục cho các bảng đã đổ
 --
+
+--
+-- Chỉ mục cho bảng `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_cart_user` (`user_id`);
+
+--
+-- Chỉ mục cho bảng `cart_items`
+--
+ALTER TABLE `cart_items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_items_cart` (`card_id`),
+  ADD KEY `fk_items_sp` (`sp_id`);
 
 --
 -- Chỉ mục cho bảng `chungloai_sanpham`
@@ -264,6 +406,21 @@ ALTER TABLE `loai_sanpham`
   ADD PRIMARY KEY (`loai_id`);
 
 --
+-- Chỉ mục cho bảng `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_orders_users` (`user_id`);
+
+--
+-- Chỉ mục cho bảng `order_items`
+--
+ALTER TABLE `order_items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_items_orders1` (`order_id`),
+  ADD KEY `fk_items_sanpham` (`product_id`);
+
+--
 -- Chỉ mục cho bảng `phoicanh`
 --
 ALTER TABLE `phoicanh`
@@ -278,8 +435,39 @@ ALTER TABLE `sanpham`
   ADD KEY `fk_chungloai_sanpham` (`chungloai_id`);
 
 --
+-- Chỉ mục cho bảng `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `uudai`
+--
+ALTER TABLE `uudai`
+  ADD PRIMARY KEY (`id_uudai`),
+  ADD KEY `fk_uudai` (`sanpham_id`);
+
+--
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
+
+--
+-- AUTO_INCREMENT cho bảng `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `cart_items`
+--
+ALTER TABLE `cart_items`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `chungloai_sanpham`
@@ -306,6 +494,18 @@ ALTER TABLE `loai_sanpham`
   MODIFY `loai_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT cho bảng `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `order_items`
+--
+ALTER TABLE `order_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT cho bảng `phoicanh`
 --
 ALTER TABLE `phoicanh`
@@ -318,8 +518,33 @@ ALTER TABLE `sanpham`
   MODIFY `sanpham_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
+-- AUTO_INCREMENT cho bảng `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `uudai`
+--
+ALTER TABLE `uudai`
+  MODIFY `id_uudai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- Các ràng buộc cho các bảng đã đổ
 --
+
+--
+-- Các ràng buộc cho bảng `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `fk_cart_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `cart_items`
+--
+ALTER TABLE `cart_items`
+  ADD CONSTRAINT `fk_items_cart` FOREIGN KEY (`card_id`) REFERENCES `cart` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_items_sp` FOREIGN KEY (`sp_id`) REFERENCES `sanpham` (`sanpham_id`) ON DELETE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `duan`
@@ -328,11 +553,30 @@ ALTER TABLE `duan`
   ADD CONSTRAINT `fk_loai_duan` FOREIGN KEY (`id_loaiduan`) REFERENCES `loai_duan` (`id_loaiduan`);
 
 --
+-- Các ràng buộc cho bảng `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `fk_orders_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
+
+--
+-- Các ràng buộc cho bảng `order_items`
+--
+ALTER TABLE `order_items`
+  ADD CONSTRAINT `fk_items_orders1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_items_sanpham` FOREIGN KEY (`product_id`) REFERENCES `sanpham` (`sanpham_id`) ON DELETE CASCADE;
+
+--
 -- Các ràng buộc cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
   ADD CONSTRAINT `fk_chungloai_sanpham` FOREIGN KEY (`chungloai_id`) REFERENCES `chungloai_sanpham` (`chungloai_id`),
   ADD CONSTRAINT `fk_loai_sanpham` FOREIGN KEY (`loai_id`) REFERENCES `loai_sanpham` (`loai_id`);
+
+--
+-- Các ràng buộc cho bảng `uudai`
+--
+ALTER TABLE `uudai`
+  ADD CONSTRAINT `fk_uudai` FOREIGN KEY (`sanpham_id`) REFERENCES `sanpham` (`sanpham_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
