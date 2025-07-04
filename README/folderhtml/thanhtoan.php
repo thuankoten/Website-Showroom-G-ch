@@ -27,10 +27,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>Thanh toán</title>
-    <link rel="stylesheet" href="foldercss/thanhtoan.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thanh toán</title>
+  <link rel="stylesheet" href="foldercss/style.css" type="text/css" />
+  <link rel="stylesheet" href="foldercss/thanhtoan.css" type="text/css" />
+  <link rel="stylesheet" href="foldercss/header-footer.css" type="text/css" />
+  <script src="jquery-3.7.1.js"></script>
 </head>
+
 <body>
 
 <div class="container">
