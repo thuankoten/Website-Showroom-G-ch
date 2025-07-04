@@ -12,7 +12,8 @@ body {
     gap: 30px;
 }
 
-.checkout-form, .order-summary {
+.checkout-form,
+.order-summary {
     background: white;
     padding: 20px;
     border-radius: 10px;
@@ -31,8 +32,8 @@ label {
     font-weight: bold;
 }
 
-input[type=text],
-input[type=email],
+input[type="text"],
+input[type="email"],
 textarea,
 select {
     width: 100%;
@@ -51,6 +52,7 @@ textarea {
     background: #f9f9f9;
     padding: 10px;
     border-radius: 5px;
+    margin-top: 5px;
 }
 
 .radio-group label {
@@ -87,6 +89,11 @@ button:hover {
 
 .order-summary p {
     margin: 8px 0;
+}
+
+.order-summary img {
+    margin: 10px 0;
+    border-radius: 5px;
 }
 
 hr {
