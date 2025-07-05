@@ -36,11 +36,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $price = (int) $_POST['price'];
         $total = $price * $quantity + 30000;
 
-        // ✅ Câu lệnh SQL thêm đơn hàng
         $sql = "INSERT INTO donhang 
-                (order_code, full_name, email, phone, address, delivery_method, payment_method, order_note, product_name, quantity, total_price)
-                VALUES 
-                ('$order_code', '$name', '$email', '$phone', '$address', '$delivery', '$payment', '$note', '$product', $quantity, $total)";
+        (order_code, full_name, email, phone, address, delivery_method, payment_method, order_note, product_name, quantity, total_price)
+        VALUES 
+        ('$order_code', '$name', '$email', '$phone', '$address', '$delivery', '$payment', '$note', '$product', $quantity, $total)";
+echo "<pre>$sql</pre>";
+
 
         if (mysqli_query($conn, $sql)) {
             unset($_SESSION['cart']); // Xóa giỏ hàng nếu có
