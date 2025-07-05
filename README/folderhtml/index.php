@@ -163,7 +163,7 @@
 <div id="include-footer">
 <script>
     $(function () {
-        $("#include-footer").load("footer.html");
+        $("#include-footer").load("footer.php");
     });
     </script>
 </div>
