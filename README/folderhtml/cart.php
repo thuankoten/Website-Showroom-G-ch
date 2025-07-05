@@ -86,6 +86,12 @@ include("../connect.php");
                 </div>
             </div>
         </div>
+       <!--  Link đến trang tra cứu đơn hàng -->
+<div style="margin: 40px auto; width: fit-content; border: 1px solid #ccc; padding: 15px 25px; border-radius: 8px;">
+  <a href="tracuu.php" style="font-size: 18px; text-decoration: none; color: #000; font-weight: bold;">
+    🔍 Tra cứu & Theo dõi đơn hàng
+  </a>
+</div>
 
         <!-- Gọi footer -->
         <div id="include-footer"></div>
