@@ -135,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 
     <div class="order-summary">
-        <h3>🧱 Gạch men cao cấp</h3>
+        <h3>🧱 Showroom Gạch </h3>
         <img src="images/gach.jpg" alt="Sản phẩm" width="100">
         <p>Số lượng: 1</p>
         <p>Giá: 200.000đ</p>
