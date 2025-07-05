@@ -77,7 +77,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
   </script>
 </head>
-
 <body>
 
 <div class="container">
