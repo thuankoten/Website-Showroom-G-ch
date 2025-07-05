@@ -3,6 +3,11 @@ session_start();
 require 'connect.php';
 $message = "";
 
+// ✅ Kiểm tra kết nối
+if (!$conn) {
+    die("Không kết nối được CSDL.");
+}
+
 // Tạo mã đơn hàng ngẫu nhiên
 function generateOrderCode() {
     return 'ODR' . rand(100000, 999999);
@@ -22,7 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $address = $_POST['address'];
         $delivery = $_POST['delivery_method'];
 
-        
         $raw_payment = $_POST['payment_method'];
         $payment = ($raw_payment === 'Tiền mặt') ? 'Thanh toán khi nhận hàng' : $raw_payment;
 
@@ -32,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $price = (int) $_POST['price'];
         $total = $price * $quantity + 30000;
 
+        // ✅ Câu lệnh SQL thêm đơn hàng
         $sql = "INSERT INTO orders 
                 (order_code, full_name, email, phone, address, delivery_method, payment_method, order_note, product_name, quantity, total_price)
                 VALUES 
@@ -47,6 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="vi">
