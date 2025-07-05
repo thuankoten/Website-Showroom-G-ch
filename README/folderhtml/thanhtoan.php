@@ -3,7 +3,9 @@ session_start();
 require 'connect.php';
 $message = "";
 
-// ✅ Kiểm tra kết nối
+session_start();
+require '../connect.php'; // Sửa lại đường dẫn cho đúng vị trí thật
+
 if (!$conn) {
     die("Không kết nối được CSDL.");
 }
