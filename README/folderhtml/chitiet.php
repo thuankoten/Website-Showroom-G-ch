@@ -21,53 +21,76 @@
         $("#include-header").load("header.php");
     });
     </script>
-<main>
+    <main>
 <?php
 $link = mysqli_connect("localhost", "root", "", "showroom_gach");
 mysqli_set_charset($link, "utf8");
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-$sql = "SELECT sp.*, l.loai_name, cl.kichthuoc, ud.phamtram_uudai
+$sql = "SELECT sp.*, 
+               l.loai_name, 
+               cl.kichthuoc, 
+               ud.phamtram_uudai, ud.giasau_uudai, 
+               ud.ngaybd_uudai, ud.ngaykt_uudai, ud.mota_uudai
         FROM sanpham sp
         JOIN loai_sanpham l ON sp.loai_id = l.loai_id
         JOIN chungloai_sanpham cl ON sp.chungloai_id = cl.chungloai_id
-        LEFT JOIN uudai ud ON sp.sanpham_id = ud.sanpham_id AND ud.trangthai_uudai = 0
+        LEFT JOIN uudai ud ON sp.sanpham_id = ud.sanpham_id AND ud.trangthai_uudai = 1
         WHERE sp.sanpham_id = $id";
 
 $result = mysqli_query($link, $sql);
 if ($sp = mysqli_fetch_assoc($result)) {
-    $gia = $sp['gia'];
+    $gia = (float)$sp['gia'];
+    $uudai = (float)$sp['phamtram_uudai'];
+    $gia_sau_uudai = (float)$sp['giasau_uudai'];
+
+    // Tính giá khuyến mãi nếu chưa có trong DB
+    if ($gia > 0) {
+        $gia_km = ($gia_sau_uudai > 0) ? $gia_sau_uudai : ($uudai > 0 ? $gia - ($gia * $uudai / 100) : 0);
+    } else {
+        $gia_km = 0;
+    }
+
+    $gia_format = $gia > 0 ? number_format($gia) . " đ" : "Liên hệ";
+    $gia_km_format = $gia_km > 0 ? number_format($gia_km) . " đ" : "Liên hệ";
     $img = base64_encode($sp['image']);
-    $uudai = $sp['phamtram_uudai'];
-    $gia_km = ($uudai > 0) ? $gia - ($gia * $uudai / 100) : 0;
 
     echo "<div style='display: flex; gap: 30px; align-items: flex-start; padding: 20px;'>";
 
-    // Ảnh bên trái
+    // Cột ảnh bên trái
     echo "<div style='flex: 1;'>";
     echo "<img src='data:image/jpeg;base64,$img' style='width:100%; max-width:400px; border-radius:8px;'>";
     echo "</div>";
 
-    // Thông tin bên phải
+    // Cột thông tin bên phải
     echo "<div style='flex: 2; text-align:left'>";
     echo "<h2>{$sp['ten_sanpham']}</h2>";
     echo "<p><strong>Mã sản phẩm:</strong> {$sp['ma_sp']}</p>";
     echo "<p><strong>Loại gạch:</strong> {$sp['loai_name']}</p>";
     echo "<p><strong>Kích thước:</strong> {$sp['kichthuoc']}</p>";
+    echo "<p><strong>Chất liệu:</strong> {$sp['chatlieu']}</p>";
+    echo "<p><strong>Bề mặt:</strong> {$sp['bemat']}</p>";
 
-    // Hiển thị giá & khuyến mãi
-    if ($uudai > 0 && $gia > 0) {
+    // Hiển thị giá và ưu đãi nếu có
+    if ($gia_km > 0 && $gia_km < $gia) {
         echo "<p><strong>Ưu đãi:</strong> -{$uudai}%</p>";
-        echo "<p><del>Giá gốc: " . number_format($gia) . " đ</del></p>";
-        echo "<p><strong>Giá khuyến mãi:</strong> <span style='color:red; font-size:18px;'>" . number_format($gia_km) . " đ</span></p>";
+        echo "<p><del>Giá gốc: {$gia_format}</del></p>";
+        echo "<p><strong>Giá khuyến mãi:</strong> <span style='color:red; font-size:18px;'>{$gia_km_format}</span></p>";
+
+        if (!empty($sp['ngaybd_uudai']) && !empty($sp['ngaykt_uudai'])) {
+            echo "<p><strong>Thời gian áp dụng:</strong> từ {$sp['ngaybd_uudai']} đến {$sp['ngaykt_uudai']}</p>";
+        }
+        if (!empty($sp['mota_uudai'])) {
+            echo "<p><strong>Mô tả ưu đãi:</strong><br>" . nl2br($sp['mota_uudai']) . "</p>";
+        }
     } else {
-        echo "<p><strong>Giá bán:</strong> <span style='color:red; font-size:18px;'>" . ($gia > 0 ? number_format($gia) . " đ" : "Liên hệ") . "</span></p>";
+        echo "<p><strong>Giá bán:</strong> <span style='color:red; font-size:18px;'>{$gia_format}</span></p>";
     }
 
-    // Mô tả
+    // Mô tả sản phẩm chung
     if (!empty($sp['mota'])) {
-        echo "<p><strong>Mô tả:</strong><br>" . nl2br($sp['mota']) . "</p>";
+        echo "<p><strong>Mô tả sản phẩm:</strong><br>" . nl2br($sp['mota']) . "</p>";
     }
 
     echo "</div></div>";
@@ -77,8 +100,8 @@ if ($sp = mysqli_fetch_assoc($result)) {
 
 mysqli_close($link);
 ?>
-
 </main>
+
 </div>
 
  <!-- Hiển thị footer -->
