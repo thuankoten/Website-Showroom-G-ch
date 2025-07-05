@@ -56,11 +56,11 @@
      <!--Script random sản phẩm -->
     <script>
       const sanPhamList = [
-        { img: "hinh/duan5.jpeg", ten: "Gạch men cao cấp"},
-        { img: "img/banner4.jpg", ten: "Gạch bông gió"},
-        { img: "img/banner2.jpg", ten: "Gạch ceramic "},
-        { img: "/img/imgduan/duan3.webp", ten: "Gạch vân đá"},
-        { img: "/img/gachlatsan.jpg", ten: "Gạch lát sàn"}
+        { img: "../img/imgduan/duan5.jpeg", ten: "Gạch men cao cấp"},
+        { img: "../img/banner4.jpg", ten: "Gạch bông gió"},
+        { img: "../img/banner2.jpg", ten: "Gạch ceramic "},
+        { img: "../img/imgduan/duan3.webp", ten: "Gạch vân đá"},
+        { img: "../img/gachlatsan.jpg", ten: "Gạch lát sàn"}
       ];
 
       function shuffleArray(array) {
