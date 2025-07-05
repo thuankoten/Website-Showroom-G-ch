@@ -3,7 +3,7 @@ include 'header.php';
 include 'database.php'; 
 ?>
 
-<link rel="stylesheet" href="tracuu.css">
+<link rel="stylesheet" href="../foldercss/tracuu.css">
 
 <div class="tracuu-container">
     <h2>Tra cứu đơn hàng</h2>
