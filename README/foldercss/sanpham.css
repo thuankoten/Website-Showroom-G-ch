@@ -7,63 +7,178 @@ body {
     padding: 0;
 }
 
-main {
-  min-height: auto;
-  height: auto;
-  overflow: hidden; /* ngăn kéo dài không cần thiết */
+.sanpham-container {
+  display: flex;
+  gap: 20px;
 }
 
-
-
-.loai-buttons, .chungloai-buttons {
-  margin: 15px 0;
-  font-size: 16px;
-}
-
-.loai-buttons a, .chungloai-buttons a {
-  margin-right: 10px;
-  text-decoration: none;
-  color: blue;
-}
-
-.products {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
-  margin-top: 30px;
-}
-
-.product {
-  border: 1px solid #ddd;
-  border-radius: 8px;
+#menu {
+  width: 200px;
+  background-color: #eee;
+  border-right: 1px solid #ccc;
   padding: 10px;
-  text-align: center;
-  background: #f9f9f9;
 }
 
-.product img {
-  width: 100%;
-  height: 150px;
-  object-fit: contain;
-  margin-bottom: 10px;
+#menu .theloai {
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px;
+  margin-top: 5px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-.pagination {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.pagination a {
-  margin: 0 5px;
+#menu .loaitin a {
+  display: block;
   padding: 5px 10px;
-  background: #eee;
+  color: #333;
+  text-decoration: none;
+  font-style: italic;
+}
+
+#menu .loaitin a:hover {
+  background-color: #ddd;
+}
+
+.content {
+  flex: 1;
+  padding: 10px;
+}
+
+.title-center {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.chungloai-row {
+  margin-bottom: 15px;
+}
+
+.chungloai-item {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 5px 10px;
+  background: #f2f2f2;
   border-radius: 5px;
   text-decoration: none;
   color: #333;
 }
 
-.pagination a.active {
-  background: #333;
+.chungloai-item.active {
+  font-weight: bold;
+  color: red;
+  text-decoration: underline;
+}
+
+.sp-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.sp-box {
+  border: 1px solid #ccc;
+  padding: 10px;
+  position: relative;
+  border-radius: 8px;
+  background: white;
+  text-align: center;
+}
+
+.sp-img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+}
+
+.sp-name {
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.sp-code {
+  font-size: 14px;
+  color: #555;
+}
+
+.sp-old-price {
+  color: #999;
+  font-size: 14px;
+}
+
+.sp-price {
+  font-size: 16px;
+  font-weight: bold;
+  color: red;
+}
+
+.badge-ud {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: red;
+  color: #fff;
+  padding: 2px 6px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+.badge-hot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: orange;
   color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pag-btn {
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 0 3px;
+  border: 1px solid #ccc;
+  background: #f2f2f2;
+  text-decoration: none;
+  color: #333;
+  border-radius: 4px;
+}
+
+.pag-btn.active {
+  background: #4CAF50;
+  color: white;
+  font-weight: bold;
+}
+
+.badge-hot {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: red;
+    color: white;
+    padding: 4px 6px;
+    font-size: 12px;
+    border-radius: 4px;
+    z-index: 2;
+}
+
+.badge-ud {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: orange;
+    color: white;
+    padding: 4px 6px;
+    font-size: 12px;
+    border-radius: 4px;
+    z-index: 2;
 }
 
