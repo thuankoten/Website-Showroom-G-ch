@@ -51,19 +51,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+  <!-- Cấu hình chung -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trang Thanh Toán</title>
 
-  <!-- CSS styles -->
-  <link rel="stylesheet" href="foldercss/style.css" type="text/css" />
-  <link rel="stylesheet" href="foldercss/thanhtoan.css" type="text/css" />
-  <link rel="stylesheet" href="foldercss/header-footer.css" type="text/css" />
+  <!-- Liên kết CSS -->
+  <link rel="stylesheet" href="../foldercss/style.css" type="text/css" />
+  <link rel="stylesheet" href="../foldercss/thanhtoan.css" type="text/css" />
+  <link rel="stylesheet" href="../foldercss/header-footer.css" type="text/css" />
 
-  <!-- jQuery -->
-  <script src="jquery-3.7.1.js"></script>
+  <!-- Thư viện JavaScript -->
+  <script src="../jquery-3.7.1.js"></script>
 
-  <!-- Script xử lý hiển thị QR nếu chọn chuyển khoản -->
+  <!-- Script xử lý hiển thị QR khi chọn phương thức chuyển khoản -->
   <script>
     function toggleBankInfo() {
       const selected = document.querySelector('input[name="payment_method"]:checked');
@@ -76,6 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
   </script>
 </head>
+
 <body>
 
 <div class="container">
