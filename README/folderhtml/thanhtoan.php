@@ -3,9 +3,15 @@ session_start();
 require '../connect.php';
 $message = "";
 
+// ✅ Định nghĩa hàm TRƯỚC khi gọi
+function generateOrderCode() {
+    return 'ODR' . rand(100000, 999999);
+}
+
 if (!$conn) {
     die("Không kết nối được CSDL.");
 }
+    // phần còn lại giữ nguyên...
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Kiểm tra điều kiện hợp lệ
