@@ -1,12 +1,17 @@
 <?php
 session_start();
-require 'connect.php';
+require '../connect.php';
 $message = "";
 
-// Tạo mã đơn hàng ngẫu nhiên
+// ✅ Định nghĩa hàm TRƯỚC khi gọi
 function generateOrderCode() {
     return 'ODR' . rand(100000, 999999);
 }
+
+if (!$conn) {
+    die("Không kết nối được CSDL.");
+}
+    // phần còn lại giữ nguyên...
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Kiểm tra điều kiện hợp lệ
@@ -22,7 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $address = $_POST['address'];
         $delivery = $_POST['delivery_method'];
 
-        
         $raw_payment = $_POST['payment_method'];
         $payment = ($raw_payment === 'Tiền mặt') ? 'Thanh toán khi nhận hàng' : $raw_payment;
 
@@ -32,10 +36,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $price = (int) $_POST['price'];
         $total = $price * $quantity + 30000;
 
-        $sql = "INSERT INTO orders 
-                (order_code, full_name, email, phone, address, delivery_method, payment_method, order_note, product_name, quantity, total_price)
-                VALUES 
-                ('$order_code', '$name', '$email', '$phone', '$address', '$delivery', '$payment', '$note', '$product', $quantity, $total)";
+        $sql = "INSERT INTO donhang 
+        (order_code, full_name, email, phone, address, delivery_method, payment_method, order_note, product_name, quantity, total_price)
+        VALUES 
+        ('$order_code', '$name', '$email', '$phone', '$address', '$delivery', '$payment', '$note', '$product', $quantity, $total)";
+echo "<pre>$sql</pre>";
+
 
         if (mysqli_query($conn, $sql)) {
             unset($_SESSION['cart']); // Xóa giỏ hàng nếu có
@@ -47,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="vi">
