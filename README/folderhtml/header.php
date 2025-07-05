@@ -33,7 +33,7 @@
         <div class="topbar-right">
             <a href="#">Liên Hệ</a>
             <span class="divider">|</span>
-            <a href="#">Giới Thiệu</a>
+            <a href="folderhtml/gioithieu.php">GIỚI THIỆU</a>
             <span class="divider">|</span>
             <a href="#">Chính Sách Bán Hàng</a>
             <span class="divider">|</span>
