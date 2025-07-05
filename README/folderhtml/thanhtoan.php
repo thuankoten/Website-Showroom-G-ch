@@ -3,16 +3,8 @@ session_start();
 require '../connect.php';
 $message = "";
 
-session_start();
-require '../connect.php'; // Sửa lại đường dẫn cho đúng vị trí thật
-
 if (!$conn) {
     die("Không kết nối được CSDL.");
-}
-
-// Tạo mã đơn hàng ngẫu nhiên
-function generateOrderCode() {
-    return 'ODR' . rand(100000, 999999);
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -39,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $total = $price * $quantity + 30000;
 
         // ✅ Câu lệnh SQL thêm đơn hàng
-        $sql = "INSERT INTO orders 
+        $sql = "INSERT INTO donhang 
                 (order_code, full_name, email, phone, address, delivery_method, payment_method, order_note, product_name, quantity, total_price)
                 VALUES 
                 ('$order_code', '$name', '$email', '$phone', '$address', '$delivery', '$payment', '$note', '$product', $quantity, $total)";
