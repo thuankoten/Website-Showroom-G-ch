@@ -32,7 +32,25 @@ include 'database.php';
             echo "<p><strong>Phương thức thanh toán:</strong> {$order['payment_method']}</p>";
             echo "<p><strong>Ghi chú:</strong> {$order['order_note']}</p>";
             echo "<p><strong>Tổng tiền:</strong> " . number_format($order['price']) . "đ</p>";
-            echo "<p><strong>Trạng thái đơn hàng:</strong> {$order['status']}</p>";
+            $status = $order['status'];
+switch ($status) {
+    case 'Chờ xác nhận':
+        $badge = "<span style='color: orange;'>🕐 Chờ xác nhận</span>";
+        break;
+    case 'Đang giao':
+        $badge = "<span style='color: blue;'>🚚 Đang giao</span>";
+        break;
+    case 'Đã giao':
+        $badge = "<span style='color: green;'>✅ Đã giao</span>";
+        break;
+    case 'Đã hủy':
+        $badge = "<span style='color: red;'>❌ Đã hủy</span>";
+        break;
+    default:
+        $badge = "<span style='color: gray;'>$status</span>";
+        break;
+}
+echo "<p><strong>Trạng thái đơn hàng:</strong> $badge</p>";
 
             // Hiển thị sản phẩm nếu có
             $order_id = $order['id'];
