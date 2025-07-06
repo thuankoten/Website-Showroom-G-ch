@@ -37,23 +37,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // ✅ Duyệt từng sản phẩm trong giỏ hàng
         foreach ($_SESSION['cart'] as $item) {
-            $product = $item['name'];
+            $product = mysqli_real_escape_string($conn, $item['name']);
             $quantity = (int)$item['quantity'];
             $price = (int)$item['price'];
             $total = $price * $quantity + 30000;
-
+        
             $sql = "INSERT INTO donhang 
-            (order_code, full_name, email, phone, address, delivery_method, payment_method, order_note, product_name, quantity, total_price)
-            VALUES 
-            ('$order_code', '$name', '$email', '$phone', '$address', '$delivery', '$payment', '$note', '$product', $quantity, $total)";
-            // echo "<pre>$sql</pre>"; // Bật nếu cần debug
-
+                (order_code, full_name, email, phone, address, delivery_method, payment_method, order_note, product_name, quantity, total_price)
+                VALUES 
+                ('$order_code', '$name', '$email', '$phone', '$address', '$delivery', '$payment', '$note', '$product', $quantity, $total)";
+        
             if (!mysqli_query($conn, $sql)) {
                 $insertSuccess = false;
                 $message = "❌ Lỗi khi thêm sản phẩm $product: " . mysqli_error($conn);
                 break;
             }
         }
+        
 
         // ✅ Thành công thì chuyển hướng và xóa giỏ hàng
         if ($insertSuccess) {
