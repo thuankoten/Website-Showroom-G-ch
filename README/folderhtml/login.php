@@ -19,8 +19,6 @@ if (isset($_POST["signin"])) {
     // Câu lệnh truy vấn
     if ($role === "admin") {
         $sql = "SELECT * FROM admins WHERE email='$email' AND password='$password'";
-    } elseif ($role === "staff") {
-        $sql = "SELECT * FROM admins WHERE email='$email' AND password='$password'";
     } else {
         $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
     }
@@ -41,7 +39,7 @@ if (isset($_POST["signin"])) {
 
         // Chuyển hướng đến trang quản trị
         if ($role === "admin" || $role === "staff") {
-            header("Location: ../admin/index.php");
+            header("Location: ./admin/index.php");
         } else {
             header("Location: index.php");
         }
