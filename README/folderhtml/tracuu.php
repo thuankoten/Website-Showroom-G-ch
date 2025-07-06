@@ -22,16 +22,18 @@ include 'database.php';
 
         if (mysqli_num_rows($result) > 0) {
             $order = mysqli_fetch_assoc($result);
-            echo "<div class='result'>";
-            echo "<h3>Thông tin đơn hàng</h3>";
-            echo "<p><strong>Mã đơn:</strong> {$order['order_code']}</p>";
-            echo "<p><strong>Họ tên:</strong> {$order['name']}</p>";
-            echo "<p><strong>SĐT:</strong> {$order['phone']}</p>";
-            echo "<p><strong>Địa chỉ:</strong> {$order['address']}</p>";
-            echo "<p><strong>Phương thức giao hàng:</strong> {$order['delivery_method']}</p>";
-            echo "<p><strong>Phương thức thanh toán:</strong> {$order['payment_method']}</p>";
-            echo "<p><strong>Ghi chú:</strong> {$order['order_note']}</p>";
-            echo "<p><strong>Tổng tiền:</strong> " . number_format($order['price']) . "đ</p>";
+        echo "<div class='result'>";
+echo "<h3>Thông tin đơn hàng</h3>";
+echo "<table class='info-table'>
+        <tr><th>Mã đơn</th><td>{$order['order_code']}</td></tr>
+        <tr><th>Họ tên</th><td>{$order['full_name']}</td></tr>
+        <tr><th>SĐT</th><td>{$order['phone']}</td></tr>
+        <tr><th>Email</th><td>{$order['email']}</td></tr>
+        <tr><th>Địa chỉ</th><td>{$order['address']}</td></tr>
+        <tr><th>Phương thức giao hàng</th><td>{$order['delivery_method']}</td></tr>
+        <tr><th>Phương thức thanh toán</th><td>{$order['payment_method']}</td></tr>
+        <tr><th>Ghi chú</th><td>{$order['order_note']}</td></tr>
+      </table>";
             $status = $order['status'];
 switch ($status) {
     case 'Chờ xác nhận':
@@ -53,34 +55,35 @@ switch ($status) {
 echo "<p><strong>Trạng thái đơn hàng:</strong> $badge</p>";
 
             // Hiển thị sản phẩm nếu có
-            $order_id = $order['id'];
-            $sql_items = "SELECT * FROM order_items WHERE order_id = $order_id";
-            $result_items = mysqli_query($conn, $sql_items);
+$order_id = $order['id'];
+$sql_items = "SELECT * FROM order_items WHERE order_id = $order_id";
+$result_items = mysqli_query($conn, $sql_items);
 
-            if (mysqli_num_rows($result_items) > 0) {
-                echo "<h3>Danh sách sản phẩm</h3>";
-                echo "<table>
-                        <tr>
-                            <th>Tên SP</th>
-                            <th>Kích thước</th>
-                            <th>SL</th>
-                            <th>Đơn giá</th>
-                            <th>Thành tiền</th>
-                        </tr>";
-                while ($row = mysqli_fetch_assoc($result_items)) {
-                    echo "<tr>
-                            <td>{$row['product_name']}</td>
-                            <td>{$row['size']}</td>
-                            <td>{$row['quantity']}</td>
-                            <td>" . number_format($row['price']) . "đ</td>
-                            <td>" . number_format($row['price'] * $row['quantity']) . "đ</td>
-                          </tr>";
-                }
-                echo "</table>";
-            }
+if (mysqli_num_rows($result_items) > 0) {
+    echo "<h3>Danh sách sản phẩm</h3>";
+    echo "<table>
+            <tr>
+                <th>Sản Phẩm</th>
+                <th>Tên Sản Phẩm</th>
+                <th>Kích thước</th>
+                <th>Số Lượng</th>
+                <th>Đơn giá</th>
+                <th>Thành tiền</th>
+            </tr>";
+    while ($row = mysqli_fetch_assoc($result_items)) {
+        echo "<tr>
+               <td><img src='{$row['image']}' alt='Sản Phẩm' width='60'></td>
+                <td>{$row['product_name']}</td>
+                <td>{$row['size']}</td>
+                <td>{$row['quantity']}</td>
+                <td>" . number_format($row['price'], 0, ',', '.') . "đ</td>
+                <td>" . number_format($row['price'] * $row['quantity'], 0, ',', '.') . "đ</td>
+              </tr>";
+    }
+    echo "</table>";
+}
 
             echo "<div class='btns'>
-                    <a href='login.php' class='btn'>Đăng nhập</a>
                     <a href='cart.php' class='btn'>Quay lại giỏ hàng</a>
                   </div>";
 
