@@ -47,10 +47,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 VALUES 
                 ('$order_code', '$name', '$email', '$phone', '$address', '$delivery', '$payment', '$note', '$product', $quantity, $total)";
         
-            if (!mysqli_query($conn, $sql)) {
-                $insertSuccess = false;
-                $message = "❌ Lỗi khi thêm sản phẩm $product: " . mysqli_error($conn);
-                break;
+        if (!mysqli_query($conn, $sql)) {
+            $insertSuccess = false;
+            $message = "❌ Lỗi khi thêm sản phẩm $product: " . mysqli_error($conn);
+            break;
             }
         }
         
