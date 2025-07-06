@@ -3,7 +3,7 @@ session_start();
 require '../connect.php';
 $message = "";
 
-// ✅ Định nghĩa hàm TRƯỚC khi gọi
+// ✅ Hàm tạo mã đơn hàng
 function generateOrderCode() {
     return 'ODR' . rand(100000, 999999);
 }
@@ -11,15 +11,17 @@ function generateOrderCode() {
 if (!$conn) {
     die("Không kết nối được CSDL.");
 }
-    // phần còn lại giữ nguyên...
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Kiểm tra điều kiện hợp lệ
+    // ✅ Kiểm tra điều kiện hợp lệ
     if (!preg_match("/^0\d{9}$/", $_POST['phone'])) {
         $message = "❌ Số điện thoại phải có đúng 10 chữ số và bắt đầu bằng 0.";
     } elseif (!preg_match("/@gmail\.com$/", $_POST['email'])) {
         $message = "❌ Email phải là địa chỉ Gmail.";
+    } elseif (empty($_SESSION['cart'])) {
+        $message = "❌ Giỏ hàng rỗng. Không thể đặt hàng.";
     } else {
+        // ✅ Lấy thông tin người dùng
         $order_code = generateOrderCode();
         $name = $_POST['full_name'];
         $email = $_POST['email'];
@@ -31,24 +33,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $payment = ($raw_payment === 'Tiền mặt') ? 'Thanh toán khi nhận hàng' : $raw_payment;
 
         $note = $_POST['order_note'];
-        $product = $_POST['product_name'];
-        $quantity = (int) $_POST['quantity'];
-        $price = (int) $_POST['price'];
-        $total = $price * $quantity + 30000;
+        $insertSuccess = true;
 
-        $sql = "INSERT INTO donhang 
-        (order_code, full_name, email, phone, address, delivery_method, payment_method, order_note, product_name, quantity, total_price)
-        VALUES 
-        ('$order_code', '$name', '$email', '$phone', '$address', '$delivery', '$payment', '$note', '$product', $quantity, $total)";
-echo "<pre>$sql</pre>";
+        // ✅ Duyệt từng sản phẩm trong giỏ hàng
+        foreach ($_SESSION['cart'] as $item) {
+            $product = $item['name'];
+            $quantity = (int)$item['quantity'];
+            $price = (int)$item['price'];
+            $total = $price * $quantity + 30000;
 
+            $sql = "INSERT INTO donhang 
+            (order_code, full_name, email, phone, address, delivery_method, payment_method, order_note, product_name, quantity, total_price)
+            VALUES 
+            ('$order_code', '$name', '$email', '$phone', '$address', '$delivery', '$payment', '$note', '$product', $quantity, $total)";
+            // echo "<pre>$sql</pre>"; // Bật nếu cần debug
 
-        if (mysqli_query($conn, $sql)) {
-            unset($_SESSION['cart']); // Xóa giỏ hàng nếu có
+            if (!mysqli_query($conn, $sql)) {
+                $insertSuccess = false;
+                $message = "❌ Lỗi khi thêm sản phẩm $product: " . mysqli_error($conn);
+                break;
+            }
+        }
+
+        // ✅ Thành công thì chuyển hướng và xóa giỏ hàng
+        if ($insertSuccess) {
+            unset($_SESSION['cart']);
             header("Location: xacnhan.php?code=$order_code");
             exit;
-        } else {
-            $message = "❌ Lỗi: " . mysqli_error($conn);
         }
     }
 }
