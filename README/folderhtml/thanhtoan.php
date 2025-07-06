@@ -10,57 +10,56 @@ function generateOrderCode() {
 
 if (!$conn) {
     die("Không kết nối được CSDL.");
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // ✅ Kiểm tra điều kiện hợp lệ
-    if (!preg_match("/^0\d{9}$/", $_POST['phone'])) {
-        $message = "❌ Số điện thoại phải có đúng 10 chữ số và bắt đầu bằng 0.";
-    } elseif (!preg_match("/@gmail\.com$/", $_POST['email'])) {
-        $message = "❌ Email phải là địa chỉ Gmail.";
-    } elseif (empty($_SESSION['cart'])) {
-        $message = "❌ Giỏ hàng rỗng. Không thể đặt hàng.";
-    } else {
-        // ✅ Lấy thông tin người dùng
-        $order_code = generateOrderCode();
-        $name = $_POST['full_name'];
-        $email = $_POST['email'];
-        $phone = $_POST['phone'];
-        $address = $_POST['address'];
-        $delivery = $_POST['delivery_method'];
-
-        $raw_payment = $_POST['payment_method'];
-        $payment = ($raw_payment === 'Tiền mặt') ? 'Thanh toán khi nhận hàng' : $raw_payment;
-
-        $note = $_POST['order_note'];
-        $insertSuccess = true;
-
-        // ✅ Duyệt từng sản phẩm trong giỏ hàng
-        foreach ($_SESSION['cart'] as $item) {
-            $product = mysqli_real_escape_string($conn, $item['name']);
-            $quantity = (int)$item['quantity'];
-            $price = (int)$item['price'];
-            $total = $price * $quantity + 30000;
-        
-            $sql = "INSERT INTO donhang 
-                (order_code, full_name, email, phone, address, delivery_method, payment_method, order_note, product_name, quantity, total_price)
-                VALUES 
-                ('$order_code', '$name', '$email', '$phone', '$address', '$delivery', '$payment', '$note', '$product', $quantity, $total)";
-            if (!mysqli_query($conn, $sql)) {
-                $insertSuccess = false;
-                $message = "❌ Lỗi khi thêm sản phẩm $product: " . mysqli_error($conn);
-                break;
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // ✅ Kiểm tra điều kiện hợp lệ
+        if (!preg_match("/^0\d{9}$/", $_POST['phone'])) {
+            $message = "❌ Số điện thoại phải có đúng 10 chữ số và bắt đầu bằng 0.";
+        } elseif (!preg_match("/@gmail\.com$/", $_POST['email'])) {
+            $message = "❌ Email phải là địa chỉ Gmail.";
+        } elseif (empty($_SESSION['cart'])) {
+            $message = "❌ Giỏ hàng rỗng. Không thể đặt hàng.";
+        } else {
+            // ✅ Escape chuỗi để tránh lỗi SQL
+            $order_code = generateOrderCode();
+            $name = mysqli_real_escape_string($conn, $_POST['full_name']);
+            $email = mysqli_real_escape_string($conn, $_POST['email']);
+            $phone = mysqli_real_escape_string($conn, $_POST['phone']);
+            $address = mysqli_real_escape_string($conn, $_POST['address']);
+            $delivery = mysqli_real_escape_string($conn, $_POST['delivery_method']);
+            $raw_payment = $_POST['payment_method'];
+            $payment = mysqli_real_escape_string($conn, ($raw_payment === 'Tiền mặt') ? 'Thanh toán khi nhận hàng' : $raw_payment);
+            $note = mysqli_real_escape_string($conn, $_POST['order_note']);
+    
+            $insertSuccess = true;
+    
+            // ✅ Duyệt từng sản phẩm trong giỏ hàng
+            foreach ($_SESSION['cart'] as $item) {
+                $product = mysqli_real_escape_string($conn, $item['name']);
+                $quantity = (int)$item['quantity'];
+                $price = (int)$item['price'];
+                $total = $price * $quantity + 30000;
+    
+                $sql = "INSERT INTO donhang 
+                    (order_code, full_name, email, phone, address, delivery_method, payment_method, order_note, product_name, quantity, total_price)
+                    VALUES 
+                    ('$order_code', '$name', '$email', '$phone', '$address', '$delivery', '$payment', '$note', '$product', $quantity, $total)";
+    
+                if (!mysqli_query($conn, $sql)) {
+                    $insertSuccess = false;
+                    $message = "❌ Lỗi khi thêm sản phẩm $product: " . mysqli_error($conn);
+                    break;
+                }
+            }
+    
+            // ✅ Thành công thì chuyển hướng và xóa giỏ hàng
+            if ($insertSuccess) {
+                unset($_SESSION['cart']);
+                header("Location: xacnhan.php?code=$order_code");
+                exit;
             }
         }
-
-        // ✅ Thành công thì chuyển hướng và xóa giỏ hàng
-        if ($insertSuccess) {
-            unset($_SESSION['cart']);
-            header("Location: xacnhan.php?code=$order_code");
-            exit;
-        }
     }
-}
+    
 ?>
     
 
