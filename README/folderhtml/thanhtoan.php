@@ -152,16 +152,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="hidden" name="price" value="200000">
     </form>
 
+    
     <div class="order-summary">
-        <h3>🧱 Showroom Gạch </h3>
-        <img src="images/gach.jpg" alt="Sản phẩm" width="100">
-        <p>Số lượng: 1</p>
-        <p>Giá: 200.000đ</p>
+        <h3>🧱 Showroom Gạch</h3>
+
+        <?php
+         $tongTien = 0;
+
+         if (!empty($_SESSION['cart'])) {
+         foreach ($_SESSION['cart'] as $item) {
+            $id = $item['id']; // 🟡 PHẢI có 'id' trong giỏ hàng
+            $ten = $item['name'];
+            $gia = $item['price'];
+            $sl = $item['quantity'];
+            $tamtinh = $gia * $sl;
+            $tongTien += $tamtinh;
+
+            echo "<div style='margin-bottom: 15px'>";
+            echo "<img src='get_image.php?id=$id' alt='$ten' style='width: 100px;'><br>";
+            echo "<strong>$ten</strong><br>";
+            echo "Số lượng: $sl<br>";
+            echo "Giá: " . number_format($gia) . "đ<br>";
+            echo "</div>";
+        }
+        }   else {
+        echo "<p>Giỏ hàng trống.</p>";
+        }
+
+        $phivanchuyen = 30000;
+        $tongCong = $tongTien + $phivanchuyen;
+       ?>
+
         <hr>
-        <p>Tạm tính: <strong>200.000đ</strong></p>
-        <p>Phí vận chuyển: <strong>30.000đ</strong></p>
-        <p><strong>Tổng cộng: 230.000đ</strong></p>
+        <p>Tạm tính: <strong><?= number_format($tongTien) ?>đ</strong></p>
+        <p>Phí vận chuyển: <strong><?= number_format($phivanchuyen) ?>đ</strong></p>
+        <p><strong>Tổng cộng: <?= number_format($tongCong) ?>đ</strong></p>
     </div>
+
 </div>
 
 </body>
