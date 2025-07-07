@@ -80,6 +80,7 @@ main {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+<<<<<<< HEAD
 .loaisp-wrapper {
     display: flex;
     align-items: center;
@@ -324,3 +325,38 @@ main {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+=======
+    .pagination {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .pagination a {
+      display: inline-block;
+      padding: 8px 12px;
+      margin: 0 4px;
+      border: 1px solid #ccc;
+      color: #333;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .pagination a.active {
+      background-color: red;
+      color: white;
+      font-weight: bold;
+      border-color: red;
+    }
+    .filter-bar {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .filter-bar a {
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #333;
+    }
+    .filter-bar a.active {
+      color: red;
+      text-decoration: underline;
+    }
+>>>>>>> d62e4c0c526d92b6cc2dcb423e7c72ecc82e289a

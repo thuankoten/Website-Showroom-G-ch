@@ -68,8 +68,8 @@
 
             <div class="phoicanh-gallery" id="phoicanh-gallery">
                 <?php
-                // Lấy dữ liệu phối cảnh từ database (ID 9-11 cho phòng vệ sinh)
-                $sql = "SELECT * FROM phoicanh WHERE id_phoicanh BETWEEN 9 AND 11 ORDER BY id_phoicanh";
+                // Lấy dữ liệu phối cảnh từ database (ID 9-12 cho phòng vệ sinh)
+                $sql = "SELECT * FROM phoicanh WHERE id_phoicanh BETWEEN 9 AND 12 ORDER BY id_phoicanh";
                 $result = mysqli_query($conn, $sql);
                 
                 if (mysqli_num_rows($result) > 0) {
