@@ -6,12 +6,6 @@
   font-family: Arial, sans-serif; 
 }
 
-/* Thiết lập cho toàn bộ trang */
-body {
-  background-color: #f4f4f4; 
-  color: #333; 
-}
-
 /* Khối bao toàn bộ nội dung */
 #container {
   max-width: 1200px;          

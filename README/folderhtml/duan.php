@@ -29,50 +29,44 @@
         <!-- slider dự án -->
         <div class="item" style="background-image: url(../img/imgduan/duan1.jpeg);">
             <div class="sliderda">
-                <div class="name">Nội dung 1</div>
-                <div class="des">Hình ảnh dự án </div>
-                <button>Thêm</button>
+                <div class="name">CHUNG CƯ MỸ ĐÌNH PEARL</div>
+                <div class="des">Dự án chung cư Mỹ Đình Pearl tọa lạc trên vị trí vàng, ngay ngã ba giao cắt giữa đường Châu Văn Liêm với Đại Lộ Thăng Long, đối diện với trụ sở Bộ Ngoại Giao, giáp với Công viên Hồ điều hòa Mễ trì rộng 14ha. </div>
             </div>
         </div>
         <div class="item" style="background-image: url(../img/imgduan/duan2.jpeg);">
             <div class="sliderda">
-                <div class="name">Nội dung 2</div>
-                <div class="des">Hình ảnh dự án </div>
-                <button>Thêm</button>
+                <div class="name">NHÀ Ở XÃ HỘI ĐỒNG MÔ– HÀ NỘI</div>
+                <div class="des">Dự án nhà ở xã hội Đồng Mô được thiết kế độc đáo, ấn tượng theo phong cách kiến trúc hiện đại, tạo cho không gian sống sự hài hòa, tinh tế.</div>
             </div>
         </div>
         <div class="item" style="background-image: url(../img/imgduan/duan3.webp);">
             <div class="sliderda">
-                <div class="name">Nội dung 3</div>
-                <div class="des">Hình ảnh dự án </div>
-                <button>Thêm</button>
+                <div class="name">KHÁCH SẠN THẮNG CƯỜNG</div>
+                <div class="des">Nằm ở TP. Hồ Chí Minh cách Bảo tàng chứng tích chiến tranh 3.1 km và Chợ Bến Thành 3.1 km </div>
             </div>
         </div>
         <div class="item" style="background-image: url(../img/imgduan/duan4.webp);">
             <div class="sliderda">
-                <div class="name">Nội dung 4</div>
-                <div class="des">Hình ảnh dự án </div>
-                <button>Thêm</button>
+                <div class="name">THE COFFEE HOUSE</div>
+                <div class="des">Thương hiệu cà phê và trà có khắp cả nước, cung cấp các món ăn, uống và dịch vụ khách sạn. </div>
             </div>
         </div>
         <div class="item" style="background-image: url(../img/imgduan/duan5.jpeg);">
             <div class="sliderda">
-                <div class="name">Nội dung 5</div>
-                <div class="des">Hình ảnh dự án </div>
-                <button>Thêm</button>
+                <div class="name">ROYAL LIVING</div>
+                <div class="des">Tinh hoa cuộc sống </div>
             </div>
         </div>
         <div class="item" style="background-image: url(../img/imgduan/duan6.png);">
             <div class="sliderda">
-                <div class="name">Nội dung 6</div>
-                <div class="des">Hình ảnh dự án </div>
-                <button>Thêm</button>
+                <div class="name">BIỆT THỰ HOÀNG GIA</div>
+                <div class="des">Phong cách thượng lưu </div>
             </div>
         </div>
         <div class="item" style="background-image: url(../img/imgduan/duan7.jpg);">
             <div class="sliderda">
-                <div class="name">Nội dung 7</div>
-                <div class="des">Hình ảnh dự án </div>
+                <div class="name">CÔNG VIÊN XANH</div>
+                <div class="des">Thiên Đường Bảo Sơn kết hợp vẻ đẹp tự nhiên và nhân tạo, là trung tâm văn hóa và giải trí. </div>
             </div>
         </div>
         
@@ -132,6 +126,9 @@ $kq2 = mysqli_query($link, $sql);
     </div>
   <?php } ?>
 </div>
+
+<!-- Loader -->
+<div class="loader" id="loader" style="display: none;"></div>
 
 <!-- PHÂN TRANG -->
 <div class="pagination">

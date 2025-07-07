@@ -1,135 +1,156 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>Khuyến mãi sản phẩm</title>
-  <link href="../foldercss/style.css" rel="stylesheet"/>
-  <link href="../foldercss/khuyenmai.css" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../foldercss/style.css">
+  <link rel="stylesheet" href="../foldercss/khuyenmai.css">
   <script src="../jquery-3.7.1.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
-  <div id="container">
-    <div id="include-header"></div>
-    <script>
-      $(function () {
-        $("#include-header").load("header.php");
-      });
-    </script>
+<div id="container">
+  <div id="include-header"></div>
+  <script>
+    $(function () {
+      $("#include-header").load("header.php");
+    });
+  </script>
+  <main>
+  <script src="../js/khuyenmai.js"></script>
+  <?php
+  $link = mysqli_connect("localhost", "root", "", "showroom_gach");
+  mysqli_set_charset($link, "utf8");
 
-    <main>
-  <div class="container">
-    <h2 class="promo-title" style="text-align:center; padding: 20px 0; color: #e60000;">CÁC SẢN PHẨM KHUYẾN MÃI</h2>
+  $loai_id = isset($_GET['loai_id']) ? (int)$_GET['loai_id'] : 0;
+  $chungloai_id = isset($_GET['chungloai_id']) ? (int)$_GET['chungloai_id'] : 0;
+  $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
+  $limit = 20;
+  $start = ($page - 1) * $limit;
 
-    <div class="filter-bar">
-      <?php
-      $link = mysqli_connect("localhost", "root", "", "showroom_gach");
-      mysqli_set_charset($link, "utf8");
+  echo "<div class='sanpham-container'>";
 
-      $loai_id = isset($_GET['loai_id']) ? (int)$_GET['loai_id'] : 0;
+  // Menu 
+  echo "<div class='menu-hot-row'>";
+  echo "<div class='menu-left'>";
+  echo "<button id='toggleMenu' class='toggle-button'>☰ Danh mục sản phẩm khuyến mãi</button>";
+  echo "<div id='menu' class='menu-content'>";
 
-      $res_loai = mysqli_query($link, "SELECT * FROM loai_sanpham");
-      echo "<a href='khuyenmai.php' class='" . ($loai_id == 0 ? "active" : "") . "'>Tất cả</a>";
-      while ($loai = mysqli_fetch_assoc($res_loai)) {
-          $active = ($loai_id == $loai['loai_id']) ? "active" : "";
-          echo "<a href='khuyenmai.php?loai_id={$loai['loai_id']}' class='$active'>{$loai['loai_name']}</a>";
+  $res_loai = mysqli_query($link, "SELECT * FROM loai_sanpham");
+  while ($loai = mysqli_fetch_assoc($res_loai)) {
+    echo "<div class='loaisp-wrapper'>";
+    echo "<div class='loaisp' data-loai-id='{$loai['loai_id']}'>{$loai['loai_name']}</div>";
+    $sql_cl = "SELECT DISTINCT cls.chungloai_id, cls.kichthuoc FROM chungloai_sanpham cls JOIN sanpham sp ON cls.chungloai_id = sp.chungloai_id WHERE sp.loai_id = {$loai['loai_id']}";
+    $res_cl = mysqli_query($link, $sql_cl);
+    echo "<div class='cloai' data-loai-id='{$loai['loai_id']}'>";
+    while ($cl = mysqli_fetch_assoc($res_cl)) {
+      echo "<a href='?loai_id={$loai['loai_id']}&chungloai_id={$cl['chungloai_id']}#duoi'>{$cl['kichthuoc']}</a>";
+    }
+    echo "</div></div>";
+  }
+  echo "</div></div>";
+
+  echo "<div class='menu-right'>";
+  $breadcrumb = '';
+  $current_category = '';
+  if ($loai_id > 0) {
+    $res_loai_name = mysqli_query($link, "SELECT loai_name FROM loai_sanpham WHERE loai_id = $loai_id");
+    if ($row = mysqli_fetch_assoc($res_loai_name)) {
+      $current_category = $row['loai_name'];
+      $breadcrumb = "Sản phẩm >> $current_category";
+      if ($chungloai_id > 0) {
+        $res_cl_name = mysqli_query($link, "SELECT kichthuoc FROM chungloai_sanpham WHERE chungloai_id = $chungloai_id");
+        if ($cl_row = mysqli_fetch_assoc($res_cl_name)) {
+          $breadcrumb .= " >> " . $cl_row['kichthuoc'];
+          $current_category .= " ( " . $cl_row['kichthuoc'] . " )";
+        }
       }
-      ?>
-    </div>
+    }
+  } else {
+    $current_category = "TẤT CẢ SẢN PHẨM KHUYẾN MÃI";
+  }
+  echo "<div class='breadcrumb' id='breadcrumb-link' style='display: ".($breadcrumb ? 'block' : 'none').";'>$breadcrumb</div>";
+  echo "</div></div>";
 
-    <div class="products">
-      <?php
-      $limit = 20;
-      $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
-      $start = ($page - 1) * $limit;
+  // Tiêu đề danh mục
+  echo "<div class='category-title' style='text-align: center; font-size: 24px; margin: 0px 0;'>";
+  echo $current_category;
+  echo "</div>";
 
-      $where = "uu.trangthai_uudai = 1";
-      if ($loai_id > 0) {
-        $where .= " AND sp.loai_id = $loai_id";
-      }
+  // Nội dung
+  echo "<div class='content' id='duoi'>";
+  $where = "uu.trangthai_uudai = 1";
+  if ($loai_id > 0) $where .= " AND sp.loai_id = $loai_id";
+  if ($chungloai_id > 0) $where .= " AND sp.chungloai_id = $chungloai_id";
 
-      $count_sql = "SELECT COUNT(*) as total FROM uudai uu JOIN sanpham sp ON sp.sanpham_id = uu.sanpham_id WHERE $where";
-      $count_result = mysqli_query($link, $count_sql);
-      $total_row = mysqli_fetch_assoc($count_result)['total'];
-      $total_pages = ceil($total_row / $limit);
+  $total = mysqli_fetch_assoc(mysqli_query($link, "SELECT COUNT(*) AS total FROM sanpham sp JOIN uudai uu ON sp.sanpham_id = uu.sanpham_id WHERE $where"))['total'];
+  $total_pages = ceil($total / $limit);
 
-      $sql = "SELECT sp.sanpham_id, sp.ten_sanpham, sp.image, sp.gia, 
-                     uu.phamtram_uudai, uu.giasau_uudai, uu.ngaybd_uudai, uu.ngaykt_uudai, uu.mota_uudai
-              FROM sanpham sp
-              JOIN uudai uu ON sp.sanpham_id = uu.sanpham_id
-              WHERE $where
-              LIMIT $start, $limit";
+  $sql = "SELECT sp.*, uu.phamtram_uudai, uu.giasau_uudai FROM sanpham sp JOIN uudai uu ON sp.sanpham_id = uu.sanpham_id WHERE $where LIMIT $start, $limit";
+  $res = mysqli_query($link, $sql);
 
-      $result = mysqli_query($link, $sql);
+  echo "<div class='sp-grid'>";
+  if (mysqli_num_rows($res) > 0) {
+    while ($sp = mysqli_fetch_assoc($res)) {
+      $img = base64_encode($sp['image']);
+      $gia = $sp['gia'];
+      $uudai = (float)$sp['phamtram_uudai'];
+      $gia_km = ($uudai > 0 && $gia > 0) ? $gia - ($gia * $uudai / 100) : $gia;
+      $id = $sp['sanpham_id'];
+      $is_hot = ($sp['id_sp_hot'] == 1);
 
-      if (!$result) {
-          echo "<p style='color:red;'>Lỗi truy vấn: " . mysqli_error($link) . "</p>";
-      } elseif (mysqli_num_rows($result) == 0) {
-          echo "<p style='color:orange;'>Không có sản phẩm khuyến mãi nào.</p>";
+      echo "<div class='sp-box'>";
+      if ($uudai > 0) echo "<div class='badge-ud'>-{$uudai}%</div>";
+      if ($is_hot) echo "<div class='badge-hot'>HOT</div>";
+
+      echo "<a href='chitiet.php?id=$id'>";
+      echo "<img class='sp-img' src='data:image/jpeg;base64,$img'>";
+      echo "<div class='sp-name'>{$sp['ten_sanpham']}</div>";
+      echo "</a>";
+      echo "<div class='sp-code'>Mã: {$sp['ma_sp']}</div>";
+
+      if ($uudai > 0 && $gia > 0) {
+        echo "<div class='sp-old-price'><del>" . number_format($gia) . " đ</del></div>";
+        echo "<div class='sp-price'>" . number_format($gia_km) . " đ</div>";
       } else {
-          while ($sp = mysqli_fetch_assoc($result)) {
-              $gia = (float)$sp['gia'];
-              $phantram = (float)$sp['phamtram_uudai'];
-              $gia_sau = (float)$sp['giasau_uudai'];
-              $gia_goc = ($gia > 0) ? number_format($gia) . " đ" : "Liên hệ";
+        echo "<div class='sp-price'>" . ($gia > 0 ? number_format($gia) . " đ" : "Liên hệ") . "</div>";
+      }
 
-              if ($gia > 0) {
-                  if ($gia_sau > 0) {
-                      $gia_km = number_format($gia_sau) . " đ";
-                  } elseif ($phantram > 0) {
-                      $gia_km = number_format($gia - ($gia * $phantram / 100)) . " đ";
-                  } else {
-                      $gia_km = number_format($gia) . " đ";
-                  }
-              } else {
-                  $gia_km = "Liên hệ";
-              }
+      echo "</div>";
+    }
+  } else {
+    echo "<p>Không có sản phẩm khuyến mãi nào.</p>";
+  }
+  echo "</div>";
 
-              $img = base64_encode($sp['image']);
-      ?>
-      <div class="product">
-        <div class="discount-badge">-<?php echo $phantram; ?>%</div>
-        <a href="chitiet.php?id=<?php echo $sp['sanpham_id']; ?>">
-          <img src="data:image/jpeg;base64,<?php echo $img; ?>" alt="<?php echo $sp['ten_sanpham']; ?>">
-        </a>
-        <div class="product-info">
-          <h4><?php echo $sp['ten_sanpham']; ?></h4>
-          <div>
-            <span class="price"><?php echo $gia_goc; ?></span>
-            <span class="new-price"><?php echo $gia_km; ?></span>
-          </div>
-          <div class="promo-detail">
-            <?php if (!empty($sp['ngaybd_uudai']) && !empty($sp['ngaykt_uudai'])): ?>
-              <p><small><strong>Thời gian:</strong> <?php echo $sp['ngaybd_uudai']; ?> đến <?php echo $sp['ngaykt_uudai']; ?></small></p>
-            <?php endif; ?>
-            <?php if (!empty($sp['mota_uudai'])): ?>
-              <p><small><strong>Mô tả:</strong> <?php echo nl2br($sp['mota_uudai']); ?></small></p>
-            <?php endif; ?>
-          </div>
-        </div>
-      </div>
-      <?php }} mysqli_close($link); ?>
-    </div>
+  // Phân trang
+  if ($total_pages > 1) {
+    echo "<div class='pagination'>";
+    for ($i = 1; $i <= $total_pages; $i++) {
+      $active = ($i == $page) ? "active" : "";
+      $link_page = "?page=$i";
+      if ($loai_id > 0) {
+        $link_page = "?loai_id=$loai_id";
+        if ($chungloai_id > 0) $link_page .= "&chungloai_id=$chungloai_id";
+        $link_page .= "&page=$i";
+      }
+      echo "<a href='{$link_page}#duoi' class='pag-btn $active'>$i</a>";
+    }
+    echo "</div>";
+  }
 
-    <?php if ($total_pages > 1): ?>
-    <div class="pagination">
-      <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-        <a href="?page=<?php echo $i; ?><?php if($loai_id > 0) echo '&loai_id=' . $loai_id; ?>" class="<?php echo ($i == $page) ? 'active' : ''; ?>"> <?php echo $i; ?> </a>
-      <?php endfor; ?>
-    </div>
-    <?php endif; ?>
-  </div>
-</main>
-
-
-  </div>
-
+  echo "</div></div>";
+  mysqli_close($link);
+  ?>
+  <script src="../js/khuyenmai.js"></script>
+  </main>
   <div id="include-footer"></div>
   <script>
     $(function () {
       $("#include-footer").load("footer.php");
     });
   </script>
+</div>
 </body>
 </html>

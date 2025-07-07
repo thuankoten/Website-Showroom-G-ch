@@ -31,32 +31,51 @@
             </span>
         </div>
         <div class="topbar-right">
-            <a href="#">Liên Hệ</a>
-            <span class="divider">|</span>
-            <a href="gioithieu.php">Giới Thiệu</a>
-            <span class="divider">|</span>
-            <a href="#">Chính Sách Bán Hàng</a>
-            <span class="divider">|</span>
             
-            <!-- Giỏ hàng -->
-            <a href="cart.php" class="cart-icon">
-                <i class="fa-solid fa-shopping-cart"></i>
-                <span class="cart-count" id="cart-count">0</span>
-            </a>
-            <span class="divider">|</span>
-            
-            <span class="icon user-icon">👤</span>
-            <?php
-            if (isset($_SESSION['user_name'])) {
-                echo '<span class="top-bar__right__item">Hi, ' . htmlspecialchars($_SESSION['user_name']) . '</span><span class="pipe2">|</span>';
-                echo '<a href="logout.php" class="top-bar__right__item">Đăng xuất</a>';
-            } else {
-                echo '<a href="register.php" class="top-bar__right__item">Đăng ký</a><span class="pipe2">|</span>';
-                echo '<a href="login.php" class="top-bar__right__item">Đăng nhập</a>';
-            }
-            ?>
-        </div>
+           <!-- Giỏ hàng -->
+        <a href="cart.php" class="cart-icon">
+            <i class="fa-solid fa-shopping-cart"></i>
+            <span class="cart-count" id="cart-count">0</span>
+        </a>
+        <span class="divider">|</span>
+        
+        <span class="icon user-icon">👤</span>
+        <?php
+        if (isset($_SESSION['user_name'])) {
+            echo '<span class="top-bar__right__item">Hi, ' . htmlspecialchars($_SESSION['user_name']) . '</span><span class="pipe2">|</span>';
+            echo '<a href="logout.php" class="top-bar__right__item">Đăng xuất</a>';
+        } else {
+            echo '<a href="register.php" class="top-bar__right__item">Đăng ký</a><span class="pipe2">|</span>';
+            echo '<a href="login.php" class="top-bar__right__item">Đăng nhập</a>';
+        }
+        ?>
     </div>
+</div>
+<script src="../jquery-3.7.1.js"></script>
+<script>
+function updateCartCount() {
+    $.ajax({
+        url: 'cart_api.php',
+        method: 'POST',
+        data: { action: 'get_cart_count' },
+        dataType: 'json',
+        success: function(response) {
+            if (response.success) {
+                $('#cart-count').text(response.count);
+            } else {
+                console.log('Lỗi cập nhật số lượng:', response.message);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.log('Lỗi cập nhật số lượng giỏ hàng:', xhr.status, error, xhr.responseText);
+        }
+    });
+}
+$(document).ready(function() {
+    updateCartCount();
+    $(document).on('cartUpdated', updateCartCount);
+});
+</script>
 
     <!-- Main bar -->
     <nav id="main-nav">

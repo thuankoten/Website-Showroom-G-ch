@@ -1,14 +1,25 @@
 <?php
-require '../connect.php'; // đúng đường dẫn đến connect.php
-
-$id = $_GET['id'];
-$sql = "SELECT hinhanh FROM sanpham WHERE id = $id";
-$result = $conn->query($sql);
-
-if ($row = $result->fetch_assoc()) {
-    header("Content-type: image/png");
-    echo $row['hinhanh'];
+require '../connect.php';
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+    $id = intval($_GET['id']);
+    $sql = "SELECT image FROM sanpham WHERE id = $id";
+    $result = mysqli_query($conn, $sql);
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        if ($row['image']) {
+            header('Content-Type: image/jpeg');
+            echo $row['image'];
+        } else {
+            header('Content-Type: image/jpeg');
+            readfile('images/placeholder.jpg');
+        }
+    } else {
+        header('Content-Type: image/jpeg');
+        readfile('images/placeholder.jpg');
+    }
 } else {
-    echo "Không tìm thấy ảnh.";
+    header('Content-Type: image/jpeg');
+    readfile('images/placeholder.jpg');
 }
+exit;
 ?>

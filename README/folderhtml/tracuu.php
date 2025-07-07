@@ -56,7 +56,11 @@ echo "<p><strong>Trạng thái đơn hàng:</strong> $badge</p>";
 
             // Hiển thị sản phẩm nếu có
 $order_id = $order['id'];
-$sql_items = "SELECT * FROM order_items WHERE order_id = $order_id";
+$sql_items = "SELECT oi.*, sp.image, sp.ten_sanpham, cl.kichthuoc 
+              FROM order_items oi 
+              LEFT JOIN sanpham sp ON oi.product_id = sp.sanpham_id 
+              LEFT JOIN chungloai_sanpham cl ON sp.chungloai_id = cl.chungloai_id 
+              WHERE oi.order_id = $order_id";
 $result_items = mysqli_query($conn, $sql_items);
 
 if (mysqli_num_rows($result_items) > 0) {
@@ -72,9 +76,9 @@ if (mysqli_num_rows($result_items) > 0) {
             </tr>";
     while ($row = mysqli_fetch_assoc($result_items)) {
         echo "<tr>
-               <td><img src='{$row['image']}' alt='Sản Phẩm' width='60'></td>
-                <td>{$row['product_name']}</td>
-                <td>{$row['size']}</td>
+               <td><img src='data:image/jpeg;base64," . base64_encode($row['image']) . "' alt='Sản Phẩm' width='60' onerror='this.src=\"placeholder.jpg\"'></td>
+                <td>{$row['ten_sanpham']}</td>
+                <td>{$row['kichthuoc']}</td>
                 <td>{$row['quantity']}</td>
                 <td>" . number_format($row['price'], 0, ',', '.') . "đ</td>
                 <td>" . number_format($row['price'] * $row['quantity'], 0, ',', '.') . "đ</td>

@@ -2,7 +2,7 @@ $(document).ready(function () {
     // Xóa spinner khi trang load
     removeSpinner();
 
-    // Xóa spinner khi trang hiển thị (bao gồm khi quay lại từ lịch sử)
+    // Xóa spinner khi trang hiển thị lại (từ lịch sử)
     $(window).on('pageshow', function(event) {
         if (event.originalEvent.persisted) {
             removeSpinner();
@@ -12,19 +12,19 @@ $(document).ready(function () {
     // Ẩn cloai ban đầu
     $(".cloai").hide();
 
-    // 1. Hover vào menu trái hoặc nút danh mục => hiện menu
+    // Hover để hiển thị menu
     $("#toggleMenu, #menu").mouseenter(function () {
         $("#menu").stop(true, true).slideDown(200);
     });
 
-    // 2. Rời chuột khỏi toàn bộ vùng menu => ẩn menu
+    // Rời khỏi menu thì ẩn menu
     $(".menu-left").mouseleave(function () {
         $("#menu").stop(true, true).slideUp(200);
         $(".cloai").slideUp(200);
         $(".loaisp").removeClass("active");
     });
 
-    // 3. Hover vào loaisp thì mở cloai tương ứng
+    // Hover vào loai thì hiện cloai tương ứng
     $(".loaisp").mouseenter(function () {
         const $this = $(this);
         const $cloai = $this.next(".cloai");
@@ -33,7 +33,7 @@ $(document).ready(function () {
         $(".cloai").slideUp(200);
         $(".loaisp").removeClass("active");
 
-        // Mở cloai tương ứng và điều chỉnh vị trí sát bên phải
+        // Mở cloai tương ứng nếu có
         if ($cloai.length) {
             $cloai.css({
                 left: $this.outerWidth(),
@@ -42,7 +42,7 @@ $(document).ready(function () {
             $this.addClass("active");
         }
 
-        // Cập nhật breadcrumb
+        // Cập nhật breadcrumb nếu không phải HOT
         const loaiName = $this.text();
         let breadcrumbText = "";
         if (loaiName !== "Sản phẩm HOT") {
@@ -51,33 +51,27 @@ $(document).ready(function () {
         $("#breadcrumb-link").text(breadcrumbText).toggle(!!breadcrumbText);
     });
 
-    // 4. Click cloai không làm ẩn menu, cập nhật breadcrumb với hiệu ứng spinner
+    // Click cloai để chuyển trang (lọc theo chủng loại) kèm spinner
     $(".cloai a").click(function (e) {
         e.preventDefault();
-        const $this = $(this);
-        const href = $this.attr("href");
-
-        // Hiển thị spinner
+        const href = $(this).attr("href");
         showSpinner();
         setTimeout(() => {
             window.location.href = href;
-        }, 500); // Giả lập delay 500ms
+        }, 500);
     });
 
-    // 5. Click vào chi tiết sản phẩm với hiệu ứng spinner
+    // Click chi tiết sản phẩm => chuyển trang với spinner
     $(".sp-box a").click(function (e) {
         e.preventDefault();
-        const $this = $(this);
-        const href = $this.attr("href");
-
-        // Hiển thị spinner
+        const href = $(this).attr("href");
         showSpinner();
         setTimeout(() => {
             window.location.href = href;
-        }, 500); // Giả lập delay 500ms
+        }, 500);
     });
 
-    // 6. Thêm hiệu ứng spinner cho phân trang
+    // Click phân trang => hiệu ứng spinner
     $('.pagination a.pag-btn').on('click', function (e) {
         if ($(this).hasClass('disabled')) {
             e.preventDefault();
@@ -85,26 +79,22 @@ $(document).ready(function () {
         }
 
         e.preventDefault();
-        const $this = $(this);
-        const href = $this.attr('href');
-
-        // Hiển thị spinner
+        const href = $(this).attr('href');
         showSpinner();
         setTimeout(() => {
             window.location.href = href;
-        }, 500); // Giả lập delay 500ms
+        }, 500);
     });
 
-    // Hàm hiển thị spinner
+    // Spinner overlay hiển thị
     function showSpinner() {
         if ($('.spinner-overlay').length === 0) {
             $('body').append('<div class="spinner-overlay"><div class="spinner"></div></div>');
         }
     }
 
-    // Hàm xóa spinner
+    // Xóa spinner
     function removeSpinner() {
         $('.spinner-overlay').remove();
     }
 });
-
