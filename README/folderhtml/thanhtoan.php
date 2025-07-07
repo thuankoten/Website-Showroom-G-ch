@@ -30,10 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_id = 1; // Thay thế bằng $_SESSION['user_id'] nếu có hệ thống đăng nhập
     $status = 'Đang chờ'; // Trạng thái ban đầu của đơn hàng
 
-    // Debug để kiểm tra giá trị
-    error_log("Debug - Delivery Method: $delivery");
-    error_log("Debug - Payment Method: $payment");
-
     if (!preg_match("/^0\d{9}$/", $phone)) {
         $message = "❌ Số điện thoại phải có đúng 10 chữ số và bắt đầu bằng 0.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL) || !preg_match("/@gmail\.com$/", $email)) {
@@ -60,6 +56,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $insertSuccess = false;
             } else {
                 // Ràng buộc tham số cho bảng orders
+                // Đảm bảo kiểu dữ liệu khớp với DB:
+                // order_code (string), user_id (int), full_name (string), email (string), phone (string),
+                // address (string), delivery_method (string), payment_method (string), order_note (string), status (string)
                 $stmt_order->bind_param("sissssssss", 
                     $order_code, $user_id, $name, $email, $phone, $address, $delivery, $payment, $note, $status);
                 
@@ -71,6 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $order_id = $conn->insert_id; // Lấy ID của đơn hàng vừa tạo
 
                     // 2. Chèn chi tiết từng sản phẩm vào bảng 'order_items'
+                    // Cấu trúc bảng order_items: id, order_id, product_id, quantity, price, discount_price, size
                     $stmt_item = $conn->prepare("INSERT INTO order_items
                         (order_id, product_id, quantity, price, discount_price, size)
                         VALUES (?, ?, ?, ?, ?, ?)");
@@ -81,6 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $insertSuccess = false;
                     } else {
                         foreach ($_SESSION['cart'] as $item) {
+                            // Đảm bảo giỏ hàng có đủ các trường cần thiết
                             if (!isset($item['id']) || !isset($item['name']) || !isset($item['quantity']) || !isset($item['price'])) {
                                 $message = "❌ Dữ liệu giỏ hàng không hợp lệ: Thiếu thông tin sản phẩm (ID, Name, Quantity, Price).";
                                 $insertSuccess = false;
@@ -88,11 +89,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 break;
                             }
                             
-                            $product_id = (int)$item['id'];
+                            $product_id = (int)$item['id']; // Lấy product_id từ giỏ hàng
                             $quantity = (int)$item['quantity'];
-                            $price_per_item = (int)$item['price'];
-                            $discount_price = (int)($item['discount_price'] ?? 0);
-                            $size = htmlspecialchars($item['size'] ?? '');
+                            $price_per_item = (int)$item['price']; // Tương ứng với cột 'price' trong order_items
+
+                            // Lấy discount_price và size nếu có (hoặc để mặc định)
+                            // Bạn cần đảm bảo các trường này có trong $item nếu muốn lưu
+                            $discount_price = (int)($item['discount_price'] ?? 0); 
+                            $size = htmlspecialchars($item['size'] ?? ''); // Kích thước sản phẩm
 
                             if ($quantity <= 0 || $price_per_item <= 0) {
                                 $message = "❌ Số lượng hoặc giá sản phẩm {$item['name']} không hợp lệ.";
@@ -101,6 +105,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 break;
                             }
 
+                            // Ràng buộc tham số cho bảng order_items
+                            // Cấu trúc: order_id (int), product_id (int), quantity (int), price (int), discount_price (int), size (string)
                             $stmt_item->bind_param("iiiiis", 
                                 $order_id, $product_id, $quantity, $price_per_item, $discount_price, $size);
 
@@ -118,16 +124,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             if ($insertSuccess) {
-                $conn->commit();
+                $conn->commit(); // Cam kết giao dịch
                 unset($_SESSION['cart']);
                 header("Location: xacnhan.php?code=" . urlencode($order_code));
                 exit;
             } else {
-                $conn->rollback();
+                $conn->rollback(); // Hoàn tác giao dịch nếu có lỗi
             }
         }
     }
-    
+}
 ?>
 
 <!DOCTYPE html>
